@@ -1,0 +1,21 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 38px;
+  padding-bottom: 48px;
+}
+
+.branding {
+  position: absolute;
+  /*nav width + 24px padding*/
+  left: 192px;
+  top: 38px;
+  text-transform: lowercase;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: .06em;
+  white-space: nowrap;
+  color: var(--medium-blue-desat);
+}

@@ -1,0 +1,176 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  transition-duration: .4s;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.nav img {
+  width: 24px;
+}
+
+.nav.expanded {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+}
+
+.left {
+  padding-top: 38px;
+  padding-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--extralight-blue);
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+}
+
+
+
+.right {
+  padding-top: 38px;
+  padding-bottom: 48px;
+  width: 0;
+  display: flex;
+  opacity: 0;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background-color: var(--medium-blue-desat);
+  height: 100%;
+  transition-duration: .4s;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.nav.expanded .right {
+  display: flex;
+  width: 200px;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.menuBtn {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-bottom: auto;
+  height: 24px;
+  padding-bottom: 146px;  
+  /*position: absolute;*/
+}
+
+.menuBtn:focus {
+  outline: none;
+}
+
+.menuBtn:hover {
+  opacity: .9;
+}
+
+.menuBtn.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.right .menuBtn {
+  padding-right: 48px;
+}
+
+.right a {
+  text-decoration: none;
+}
+
+.links {
+  /*margin: auto 0;*/
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+}
+
+.links span {
+  color: var(--dark-blue);
+  font-size: 146x;
+  height: 24px;
+}
+
+.socials span {
+  color: var(--extralight-blue);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+
+
+.linkIcon {
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+.linkIcon:focus {
+  outline: none;
+}
+
+.linkIcon:hover img {
+  opacity: 1;
+}
+
+.linkIcon img {
+  height: 24px;
+  width: 24px;
+  opacity: .3;
+  transition-duration: .2s;
+}
+
+.linkIcon.active img {
+  opacity: 1;
+}
+
+.linkLabel {
+  align-self: flex-start !important;
+  padding-left: 12px !important;
+  align-items: flex-start;
+}
+
+.linkLabel .linkIcon {
+  height: 48px !important;
+  vertical-align: center;
+}
+
+.socials {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  height: 170px;
+}
+
+.socials .linkIcon {
+  padding: 6px;
+}
+
+.socials .linkIcon img {
+  opacity: 1;
+}
+
+.linkLabels {
+
+}
