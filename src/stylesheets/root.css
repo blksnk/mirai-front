@@ -1,5 +1,5 @@
 /*fonts*/
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,600i,700,700i,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,600i,700,700i,800|Poppins:400,500,600,600i,700,700i,800,900&display=swap');
 
 * {
   font-family: 'Poppins', sans-serif;
@@ -24,6 +24,24 @@
   box-sizing: border-box;
 }
 
+.titleSection {
+  margin-bottom: 204px;
+  margin-top: 120px;
+  grid-column-start: 2;
+  grid-column-end: 7;
+  height: unset;
+}
+
+.titleSection h1 {
+  white-space: nowrap;
+}
+
+.sectionSeparator {
+  height: 132px;
+  grid-column: 1 / 11;
+
+}
+
 /*fonts*/
 
 .logoText {
@@ -46,6 +64,7 @@ h1 {
   line-height: 105px;
   color: var(--dark-blue);
   margin: 0;
+  margin-bottom: 48px;
 }
 
 h2 {
