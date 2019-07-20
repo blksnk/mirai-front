@@ -51,6 +51,14 @@
   pointer-events: none;
 }
 
+.right div {
+  display: none;
+}
+
+.nav.expanded .right div {
+  display: flex;
+}
+
 .nav.expanded .right {
   display: flex;
   width: 200px;
@@ -65,7 +73,8 @@
   cursor: pointer;
   margin-bottom: auto;
   height: 24px;
-  padding-bottom: 146px;  
+  padding-bottom: 146px;
+  transition-duration: .2s;
   /*position: absolute;*/
 }
 
@@ -173,4 +182,8 @@
 
 .linkLabels {
 
+}
+
+.socialsAbbrev span {
+  color: var(--dark-blue);
 }
