@@ -1,0 +1,40 @@
+.s {
+  grid-column: 1 / 11;
+}
+
+.s1t {
+  grid-column: 2 / 9;
+}
+
+.s1p {
+  grid-column: 3 / 6;
+}
+
+.s1i {
+  grid-column: 7 / 10;
+  justify-self: end !important;
+}
+
+.s2t {
+  grid-column: 3 / 10;
+}
+
+.s2p {
+  grid-column: 4 / 10;
+}
+
+.s2i {
+  grid-column: 4 / 8;
+  margin-top: 48px;
+  /*justify-self: end !important;*/
+}
+
+.s3t {
+  grid-column: 4 / 11;
+}
+
+.s3p {
+  grid-column: 5 / 10;
+  /*justify-self: end !important;*/
+  /*text-align: right;*/
+}
