@@ -17,55 +17,59 @@ import s from './RightNav.module.css'
 
 const RightNav = ({ history }) => {
   const [expanded, setExpansion] = React.useState(false)
-  console.log(expanded)
+  const retract = () => {
+    if(expanded) {
+      setExpansion(false)
+    }
+  }
   return (
   <nav className={`${s.nav} ${expanded ? s.expanded : ''}`}>
     <div className={s.left}>
       <MenuBtn expanded={expanded} setExpansion={setExpansion} hide={expanded}/>
-      <Links h={history}/>
+      <Links h={history} retract={retract} />
 
-      <Socials history={history}/>
+      <Socials h={history} retract={retract} />
     </div>
     <div className={s.right}>
       <MenuBtn expanded={expanded} setExpansion={setExpansion}/>
-      <LinkLabels h={history}/>
-      <SocialLabels h={history}/>
+      <LinkLabels h={history} retract={retract}/>
+      <SocialLabels h={history} retract={retract}/>
     </div>
   </nav>
   )
 }
 
-const Links = ({ h }) => 
+const Links = ({ h, retract }) => 
   <div className={s.links}>
-    <LinkIcon icon={about} href='/about' title='about' h={h}/>
-    <LinkIcon icon={projects} href='/projects' title='projects' h={h}/>
-    <LinkIcon icon={contact} href='/contact' title='contact' h={h}/>
+    <LinkIcon retract={retract} icon={about} href='/about' title='about' h={h}/>
+    <LinkIcon retract={retract} icon={projects} href='/projects' title='projects' h={h}/>
+    <LinkIcon retract={retract} icon={contact} href='/contact' title='contact' h={h}/>
   </div>
 
-const LinkLabels = ({ h }) => 
+const LinkLabels = ({ h, retract }) => 
   <div className={`${s.links} ${s.linkLabel}`}>
-    <LinkIcon icon={about} href='/about' title='about' h={h} label='about'/>
-    <LinkIcon icon={projects} href='/projects' title='projects' h={h} label='projects'/>
-    <LinkIcon icon={about} href='/contact' title='contact' h={h} label='contact'/>
+    <LinkIcon retract={retract} href='/about' title='about' h={h} label='about'/>
+    <LinkIcon retract={retract} href='/projects' title='projects' h={h} label='projects'/>
+    <LinkIcon retract={retract} href='/contact' title='contact' h={h} label='contact'/>
   </div>
 
-const Socials = ({ h }) =>
+const Socials = ({ h, retract }) =>
   <div className={s.socials}>
-    <LinkIcon icon={linkedin} href='https://www.linkedin.com/in/jn-veigel/' title='linkedin' external/>
-    <LinkIcon icon={gitlab} href='https://www.gitlab.com/blksnk' title='gitlab' external/>
-    <LinkIcon icon={github} href='https://www.github.com/blksnk' title='github' external/>
-    <LinkIcon icon={instagram} href='https://www.instagram.com/chxmpetre' title='instagram' external/>
+    <LinkIcon icon={linkedin} retract={retract} href='https://www.linkedin.com/in/jn-veigel/' title='linkedin' external/>
+    <LinkIcon icon={gitlab} retract={retract} href='https://www.gitlab.com/blksnk' title='gitlab' external/>
+    <LinkIcon icon={github} retract={retract} href='https://www.github.com/blksnk' title='github' external/>
+    <LinkIcon icon={instagram} retract={retract} href='https://www.instagram.com/chxmpetre' title='instagram' external/>
   </div>
 
-const SocialLabels = ({ h }) => 
+const SocialLabels = ({ h, retract }) => 
   <div className={`${s.socials} ${s.linkLabel}`}>
-    <LinkIcon icon={linkedin} href='https://www.linkedin.com/in/jn-veigel/' title='linkedin' external label='linkedin' />
-    <LinkIcon icon={gitlab} href='https://www.gitlab.com/blksnk' title='gitlab' external label='gitlab'/>
-    <LinkIcon icon={github} href='https://www.github.com/blksnk' title='github' external label='github'/>
-    <LinkIcon icon={instagram} href='https://www.instagram.com/chxmpetre' title='instagram' external label='instagram'/>
+    <LinkIcon retract={retract} href='https://www.linkedin.com/in/jn-veigel/' title='linkedin' external label='linkedin' />
+    <LinkIcon retract={retract} href='https://www.gitlab.com/blksnk' title='gitlab' external label='gitlab'/>
+    <LinkIcon retract={retract} href='https://www.github.com/blksnk' title='github' external label='github'/>
+    <LinkIcon retract={retract} href='https://www.instagram.com/chxmpetre' title='instagram' external label='instagram'/>
   </div>
 
-const LinkIcon = ({ href, icon, title, h, external, label }) => {
+const LinkIcon = ({ href, icon, title, h, external, label, retract, className, }) => {
   const active = checkActive(href)
   return (
   <a
@@ -73,8 +77,13 @@ const LinkIcon = ({ href, icon, title, h, external, label }) => {
     target='_blank'
     rel='noopener noreferrer'
     title={title}
-    className={`${s.linkIcon} ${active ? s.active : ''}`}
-    onClick={e => redirectTo(e, href, h, external)}
+    className={`${s.linkIcon} ${active ? s.active : ''} ${className}`}
+    onClick={e => {
+      if(retract) {
+        retract()
+      }
+      redirectTo(e, href, h, external)
+    }}
   >
     {label
       ? <span>{`${label}.`}</span>
