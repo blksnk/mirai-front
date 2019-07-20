@@ -1,0 +1,70 @@
+.wrapper {
+  position: relative;
+}
+
+.wrapper > div {
+  position: relative;
+  border: 2px inset var(--dark-blue);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper > div:first-child {
+  border-width: 3px;
+}
+
+.portrait {
+  max-width: 336px;
+  max-height: 448px;
+}
+
+.portrait > div {
+  width: 336px;
+  height: 448px;
+}
+
+.portrait > div > img {
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 150%;
+  max-height: 150%;
+}
+
+.landscape {
+  max-width: 588px;
+  max-height: 330px;
+}
+
+.landscape > div {
+  width: 588px;
+  height: 330px;
+}
+
+.landscape > div > img {
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 150%;
+  max-height: 150%;
+}
+
+.frame1 {
+  top: 0;
+  right: 0;
+  z-index: 3;
+}
+
+.frame2 {
+  z-index: 2;
+  top: calc(9px - 100%);
+  right: calc(8px);
+}
+
+.frame3 {
+  z-index: 1;
+  /*position: absolute;*/
+  top: calc(18px - 200%);
+  right: calc(16px);
+}
+
