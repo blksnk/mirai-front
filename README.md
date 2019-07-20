@@ -16,4 +16,4 @@ Install dependecies with:
 Run it with:
  `yarn start`
 
-##Hope you enjoy this sneak peek, feedback is greatly appreciated!
+## Hope you enjoy this sneak peek, feedback is greatly appreciated!
