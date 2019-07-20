@@ -5,6 +5,7 @@
   justify-content: space-between;
   padding-top: 38px;
   padding-bottom: 48px;
+  height: 100%;
 }
 
 .branding {
@@ -18,4 +19,11 @@
   letter-spacing: .06em;
   white-space: nowrap;
   color: var(--medium-blue-desat);
+}
+
+.bottomWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 }
