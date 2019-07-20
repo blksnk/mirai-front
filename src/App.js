@@ -2,12 +2,16 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import 'stylesheets/root.css'
 import './App.css'
+
 import Projects from 'views/Projects'
+import About from 'views/About'
+import Contact from 'views/Contact'
 
 import LeftNav from 'uikit/LeftNav'
 import RightNav from 'uikit/RightNav'
 
-const App = () => (
+const App = () => {
+  return (
   <div className='App'>
     <div className='navLeftWrapper'>
       <LeftNav/>
@@ -16,9 +20,10 @@ const App = () => (
     <div className='middle'>
       <div className='contentContainer'>
 
-      {/*<Switch>
-        <Route path='/' component={Projects}/>
-      </Switch>*/}
+      <Switch>
+        <Route path='/about' component={About}/>
+        <Route path='/contact' component={Contact}/>
+      </Switch>
         
       </div>
 
@@ -29,7 +34,9 @@ const App = () => (
       <RightNav/>
     </div>
   </div>
-)
+)}
+
+
 
 const GridLines = () => <div className='linesWrapper'>
   <div className='gridLine'></div>
