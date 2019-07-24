@@ -29,7 +29,7 @@
 .frame2 {
   z-index: 2;
   top: calc(9px - 100%);
-  right: calc(8px);
+  right: calc(-8px);
   border-color: var(--grey-blue);
 }
 
@@ -37,13 +37,81 @@
   z-index: 1;
   /*position: absolute;*/
   top: calc(18px - 200%);
-  right: calc(16px);
+  right: calc(-16px);
   border-color: var(--medium-blue-desat);
 }
 
 .btn {
   width: 252px;
   height: 66px;
+  cursor: pointer;
+  position: relative;
+}
+
+.btn > *:first-child {
+  position: relative;
+}
+
+.btn input {
+  position: relative;
+}
+
+.btn > *:first-child::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--dark-blue);
+  color: var(--background);
+  visibility: hidden;
+  transition: all .3s ease-in-out 0s;
+}
+
+.btn > *:hover span {
+  color: var(--background) !important;
+}
+
+.btn > *:first-child:hover::before {
+  visibility: visible;
+  right: 0;
+  width: 100%;
+}
+
+.btn input ::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--dark-blue);
+  color: var(--background);
+  visibility: hidden;
+  transition: all .3s ease-in-out 0s;
+}
+
+.btn input:hover::before {
+  visibility: visible;
+  right: 0;
+  width: 100%;
+  color: var(--background) !important;
+}
+
+.btn input {
+  font-weight: 600;
+  font-size: 14px;
+  width: 100%;
+  height: 100%;
+  color: var(--dark-blue);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px 14px;
 }
 
 .btn span {
@@ -54,7 +122,8 @@
   color: var(--dark-blue);
   text-align: left;
   padding: 16px 8px;
-  cursor: pointer;
+  z-index: 5;
+  transition: all .3s ease-in-out 0s;
 }
 
 .btn span::first-letter {
@@ -100,4 +169,157 @@
 
 .pageIndicator span:last-child {
   color: var(--grey-blue);
+}
+
+.contactFormLabel {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--grey-blue);
+  margin-bottom: 36px;
+  display: block;
+}
+
+.contactFormLabelInline {
+  display: inline !important;
+}
+
+.contactFormLabel span {
+  display: inline-block;
+}
+
+.contactFormInput {
+  color: var(--black);
+  font-size: 26px;
+  height: 30px;
+  font-weight: 600;
+  width: 264px;
+  background: none;
+  border: none;
+  position: relative;
+  margin: 0 0 3px 6px;
+  border-bottom: 3px solid var(--medium-dark-desat);
+}
+
+.contactFormInput:focus {
+  outline: none;
+  border-color: var(--black);
+}
+
+.textBox {
+  display: block;
+  /*margin-bottom: 36px;*/
+  padding: 0;
+  width: 100%;
+  color: var(--black);
+  font-size: 24px;
+  font-weight: 600;
+  resize: none;
+  border: none;
+  background: none;
+}
+
+.textBox:focus {
+  outline: none;
+}
+
+.textBox:focus::placeholder {
+  color: var(--medium-dark-desat);
+}
+
+.textBox::placeholder {
+  color: var(--medium-blue-desat);
+}
+
+.slider {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  overflow-y: visible;
+  /*width: 100%;*/
+  padding-top: 32px;
+  height: calc(444px + 32px + 120px);
+  padding-bottom: 120px;
+}
+
+.sliderSlide {
+  height: 312px;
+  /*height: 100%;*/
+  margin-right: 24px;
+}
+
+.sliderImgContainer {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  justify-content: flex-start;
+  align-items: center;
+  border: none;
+  position: relative;
+}
+
+.sliderImg {
+  min-height: 100%;
+  min-width: 400px;
+  max-width: 600px;
+}
+
+.sliderInfo {
+  height: 444px;
+  padding: 312px 12px 12px 12px; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.sliderInfo h3::first-letter {
+  text-transform: uppercase;
+}
+
+.sliderSlide.dark .sliderInfo {
+  background-color: var(--medium-dark-desat);
+  border-color: var(--medium-dark-desat);
+}
+
+.sliderSlide.light .sliderInfo {
+  background-color: var(--medium-blue-desat);
+  border-color: var(--medium-blue-desat);
+}
+
+.sliderSlide.dark p {
+  color: var(--extralight-blue);
+}
+
+.sliderSlide.light p {
+  color: var(--medium-dark-desat);
+}
+
+.sliderNumber {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  z-index: 4;
+  font-weight: 600;
+  font-size: 60px;
+  color: red;
+}
+
+.sliderSlide.dark .sliderNumber {
+  color: var(--medium-blue-desat);
+}
+
+.sliderSlide.light .sliderNumber {
+  color: var(--medium-dark-desat);
+}
+
+.logoVertical {
+  cursor: pointer;
+  width: 36px;
+}
+
+.logoHorizontal {
+  cursor: pointer;
+  height: 44px;
 }
