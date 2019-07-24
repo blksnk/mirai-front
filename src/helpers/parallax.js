@@ -46,13 +46,19 @@ const animate = (e, d, els, g) => {
 const applyEffect = (el, coefX, coefY, g) => {
   const frame2 = el.querySelector(`.${g.frame2}`)
   const frame3 = el.querySelector(`.${g.frame3}`)
+  const basisX = 8
+  const basisY = 9
+  const offsetXf2 = - basisX + coefX * 1.5
+  const offsetYf2 = basisY - coefY * 1.5
+  const offsetXf3 = - 2 * basisX + coefX * 3
+  const offsetYf3 = 2 * basisY - coefY * 3
   if(frame2) {
-    frame2.style.right = `${coefX * 2.5}px`
-    frame2.style.top = `calc(${- coefY * 2.5}px - 100%)`
+    frame2.style.right = `${offsetXf2}px`
+    frame2.style.top = `calc(${offsetYf2}px - 100%)`
   }
   if(frame3) {
-    frame3.style.right = `${coefX * 5}px`
-    frame3.style.top = `calc(${- coefY * 5}px - 200%)`
+    frame3.style.right = `${offsetXf3}px`
+    frame3.style.top = `calc(${offsetYf3}px - 200%)`
   }
 }
 
