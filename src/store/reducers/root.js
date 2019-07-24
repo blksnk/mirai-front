@@ -19,7 +19,6 @@ const initState = {
 const rootReducer = (state = initState, action) => {
   switch(action.type) {
     case INDICATOR_INCREMENT: {
-      console.log(INDICATOR_INCREMENT)
       let { current, total } = state.pageIndicator
       if(current < total) {
         current++ 
@@ -34,7 +33,6 @@ const rootReducer = (state = initState, action) => {
     }
 
     case INDICATOR_DECREMENT: {
-      console.log(INDICATOR_DECREMENT)
       let { current } = state.pageIndicator
       if(current > 0) {
         current--
@@ -49,7 +47,6 @@ const rootReducer = (state = initState, action) => {
     }
 
     case INDICATOR_SET_CURRENT: {
-      console.log(INDICATOR_SET_CURRENT)
       const { current } = action
       const { total } = state.pageIndicator
       if(current <= total) {
@@ -66,7 +63,6 @@ const rootReducer = (state = initState, action) => {
     }
 
     case INDICATOR_SET_TOTAL: {
-      console.log(INDICATOR_SET_TOTAL)
       const { total } = action
       const { current } = state.pageIndicator
       if(total >= current) {
@@ -84,7 +80,6 @@ const rootReducer = (state = initState, action) => {
 
     case INDICATOR_SET: {
       const { total, current } = action
-      console.log(INDICATOR_SET, total, current)
       if(current <= total && total > 0) {
         return {
           ...state,
