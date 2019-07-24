@@ -9,7 +9,6 @@ const mapStateToProps = ({ pageIndicator }) => ({ pageIndicator })
 
 const PageSection = ({ first, total, current, pageIndicator, dispatch, className, ...props }) => {
   const ifNeeded = (f, c) => {
-    console.log('store: ', pageIndicator.current, 'call: ', c)
     if(c !== pageIndicator.current) {
       dispatch(f(c))
     }
