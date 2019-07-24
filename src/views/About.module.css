@@ -38,3 +38,7 @@
   /*justify-self: end !important;*/
   /*text-align: right;*/
 }
+
+.s3sl {
+  grid-column: 2 / 12;
+}
