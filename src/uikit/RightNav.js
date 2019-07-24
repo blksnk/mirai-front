@@ -101,8 +101,15 @@ const redirectTo = (e, href, h, external) => {
     e.stopPropagation()
     if(window.location.pathname !== href) {
       h.push(href)
+      scrollToTop()
     }
   }
+}
+
+const scrollToTop = () => {
+  const el = document.querySelector('.contentContainer')
+  console.log(el)
+  el.scrollTop = 0;
 }
 
 const MenuBtn = ({ expanded, setExpansion, hide }) => 
