@@ -27,3 +27,21 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+.email {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  margin-top: 204px;
+  margin-bottom: auto;
+  text-decoration: none;
+  color: var(--medium-blue-desat);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.email:hover {
+  border-left: 2px solid var(--medium-blue);
+  color: var(--medium-blue);
+  padding-right: 2.5px;
+}
