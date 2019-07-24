@@ -1,4 +1,32 @@
-.btn {
+.s1t {
+  grid-column: 2 / 9;
+}
+
+.s2f {
+  grid-column: 2 / 10;
+  /*position: relative;*/
+  margin-bottom: calc(6 * var(--unit));
+}
+
+.s2i1 {
   grid-column: 4 / 6;
-  margin-top: 40vh;
+  white-space: nowrap;
+}
+
+.s2t {
+
+}
+
+.s2i3 {
+
+}
+
+.s2i4 {
+
+}
+
+.submit {
+  margin-bottom: 96px;
+  margin-left: 50%;
+  margin-top: 96px;
 }
