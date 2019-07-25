@@ -10,7 +10,7 @@ const initState = {
   name: '',
   subject: '',
   message: '',
-  email: '',
+  clientEmail: '',
   phoneNumber: '',
 }
 
@@ -40,12 +40,15 @@ const Contact = ({ history, ...props }) => {
         <p className={s.s1p}>Veniam incididunt eiusmod culpa dolore adipisicing fugiat et aliqua voluptate occaecat pariatur laboris dolor irure eiusmod id aliqua.</p>
       </div>
 
-      <form action='#' className={s.s2f} onSubmit={e => {
-        e.preventDefault()
-        submit()
-        e.returnValue = false
-        return false
-      }} id='contactForm'>
+      <form
+        action="https://formspree.io/hello.mirai.dev@gmail.com"
+        method="POST"
+        className={s.s2f}
+        onSubmit={e => {
+          e.preventDefault()
+          submit()
+        }}
+        id='contactForm'>
         <FormInput
           className={s.s2i1}
           changeState={changeState}
@@ -84,9 +87,9 @@ const Contact = ({ history, ...props }) => {
         <FormInput
           className={s.s2i3}
           changeState={changeState}
-          name='email'
+          name='clientEmail'
           type='email'
-          value={state.email}
+          value={state.clientEmail}
           required
           width={348}
           tabIndex={4}
