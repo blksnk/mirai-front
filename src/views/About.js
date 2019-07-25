@@ -48,7 +48,7 @@ const About = () => {
         <PageSection className={s.s} first total={3}/>
         <h1>I create<br/>
           and build<br/>
-          Websites
+          Websites.
         </h1>
         <p>Sunt dolore ut deserunt occaecat duis ut enim anim non dolor mollit aliqua anim sint enim consectetur deserunt incididunt. Sunt dolore ut deserunt occaecat duis ut enim anim non dolor mollit aliqua anim sint enim consectetur deserunt incididunt.</p>
       </div>
