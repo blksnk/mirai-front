@@ -274,6 +274,14 @@
   justify-content: flex-start;
 }
 
+.dark .sliderInfo h3 {
+  color: var(--extralight-blue);
+}
+
+.light .sliderInfo h3 {
+  color: var(--background);
+}
+
 .sliderInfo h3::first-letter {
   text-transform: uppercase;
 }
@@ -303,6 +311,7 @@
   z-index: 4;
   font-weight: 600;
   font-size: 60px;
+  line-height: 60px;
   color: red;
 }
 
@@ -314,12 +323,19 @@
   color: var(--medium-dark-desat);
 }
 
-.logoVertical {
+.logoVector {
   cursor: pointer;
+  transition-duration: .3s;
+}
+
+.logoVector:hover {
+  fill: var(--grey-blue);
+}
+
+.logoVertical {
   width: 36px;
 }
 
 .logoHorizontal {
-  cursor: pointer;
   height: 44px;
 }
