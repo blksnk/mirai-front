@@ -41,7 +41,6 @@
 }
 
 .email:hover {
-  border-left: 2px solid var(--medium-blue);
   color: var(--medium-blue);
-  padding-right: 2.5px;
+  box-shadow: -3px 0 0 var(--medium-blue);
 }
