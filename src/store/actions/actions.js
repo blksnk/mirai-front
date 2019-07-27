@@ -6,6 +6,8 @@ const {
   INDICATOR_SET_CURRENT,
   INDICATOR_SET_TOTAL,
   TITLE_SET,
+  DARK_MODE_SET,
+  DARK_MODE_TOGGLE,
 } = types
 
 const createActionBasic = (type) => ({
@@ -29,3 +31,5 @@ export const indicatorSet = (current, total) => createAction2Param(INDICATOR_SET
 export const indicatorSetTotal = (total) => createAction1Param(INDICATOR_SET_TOTAL, 'total', total)
 export const indicatorSetCurrent = (current) => createAction1Param(INDICATOR_SET_CURRENT, 'current', current)
 export const pageTitleSet = (title) => createAction1Param(TITLE_SET, 'title', title)
+export const darkModeSet = (bool) => createAction1Param(DARK_MODE_SET, 'active', bool)
+export const darkModeToggle = () => createActionBasic(DARK_MODE_TOGGLE)

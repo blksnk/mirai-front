@@ -6,6 +6,8 @@ const {
   INDICATOR_SET_CURRENT,
   INDICATOR_SET_TOTAL,
   TITLE_SET,
+  DARK_MODE_SET,
+  DARK_MODE_TOGGLE,
 } = types
 
 const initState = {
@@ -14,7 +16,11 @@ const initState = {
     current: 1,
     total: 4,
   },
+  darkMode: false,
+  userDarkMode: false,
 }
+
+
 
 const rootReducer = (state = initState, action) => {
   switch(action.type) {
@@ -31,7 +37,6 @@ const rootReducer = (state = initState, action) => {
         }
       }
     }
-
     case INDICATOR_DECREMENT: {
       let { current } = state.pageIndicator
       if(current > 0) {
@@ -45,7 +50,6 @@ const rootReducer = (state = initState, action) => {
         }
       }
     }
-
     case INDICATOR_SET_CURRENT: {
       const { current } = action
       const { total } = state.pageIndicator
@@ -61,7 +65,6 @@ const rootReducer = (state = initState, action) => {
         return state
       }
     }
-
     case INDICATOR_SET_TOTAL: {
       const { total } = action
       const { current } = state.pageIndicator
@@ -77,7 +80,6 @@ const rootReducer = (state = initState, action) => {
         return state
       }
     }
-
     case INDICATOR_SET: {
       const { total, current } = action
       if(current <= total && total > 0) {
@@ -92,13 +94,25 @@ const rootReducer = (state = initState, action) => {
         return state
       }
     }
-
     case TITLE_SET: {
       const { title } = action
       document.title = `${title} - mirai.`
       return {
         ...state,
         pageTitle: title
+      }
+    }
+    case DARK_MODE_SET: {
+      const { active } = action
+      return {
+        ...state,
+        darkMode: active
+      }
+    }
+    case DARK_MODE_TOGGLE: {
+      return {
+        ...state,
+        darkMode: !state.darkMode
       }
     }
 
