@@ -1,0 +1,64 @@
+.linesWrapper.dark {
+  background-color: var(--black);
+}
+
+.dark .gridLine {
+  border-color: var(--dark-grey);
+}
+
+.dark h1 {
+  color: var(--medium-blue-desat);
+}
+
+.dark h2 {
+  color:  var(--medium-dark-desat);
+}
+
+.dark h3 {
+  color:  var(--background) !important;
+}
+
+.dark p {
+  color:  var(--light-blue);
+}
+
+.dark .textParallax h1 {
+  -webkit-text-stroke: 2px var(--medium-blue-desat);
+}
+
+.dark .textParallax .fill {
+  -webkit-text-fill-color: var(--medium-blue-desat);
+}
+
+.dark .pWrapper > * {
+  border-color:  var(--extralight-blue);
+}
+/* 
+.dark .pWrapper > *:last-child {
+  border-color: var(--light-blue);
+} */
+
+.dark .projectNumber {
+  color: var(--extralight-blue);
+}
+
+.dark .projectTitle {
+  -webkit-text-stroke: 2px var(--medium-blue-desat);
+}
+
+.dark .btn > * {
+  border-color: var(--background);
+  background: var(--black);
+}
+
+.dark .btn button {
+  color: var(--background);
+}
+
+.dark .projectPrevBtn {
+  color:  var(--medium-blue);
+}
+
+.dark .projectPrevBtn:hover {
+  color:  var(--medium-blue-desat);
+}
