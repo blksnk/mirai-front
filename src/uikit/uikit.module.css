@@ -30,7 +30,7 @@
   z-index: 2;
   top: calc(9px - 100%);
   right: calc(-8px);
-  border-color: var(--grey-blue);
+  border-color: var(--dark-blue);
 }
 
 .frame3 {
@@ -39,6 +39,7 @@
   top: calc(18px - 200%);
   right: calc(-16px);
   border-color: var(--medium-blue-desat);
+  background: none;
 }
 
 .btn {
@@ -101,27 +102,22 @@
   color: var(--background) !important;
 }
 
-.btn input {
-  font-weight: 600;
-  font-size: 14px;
-  width: 100%;
-  height: 100%;
-  color: var(--dark-blue);
-  text-align: left;
+.btn button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding: 16px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 14px;
+  color: var(--dark-blue);
+  will-change: color;
+  text-align: left;
+  vertical-align: center;
 }
 
 .btn span {
-  font-weight: 600;
-  font-size: 14px;
   width: 100%;
-  height: 100%;
-  color: var(--dark-blue);
-  text-align: left;
-  padding: 16px 8px;
   z-index: 5;
   transition: all .3s ease-in-out 0s;
 }
@@ -151,8 +147,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  letter-spacing: 6%;
-  font-family: 16px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -165,10 +160,12 @@
 
 .pageIndicator span:first-child {
   color: var(--extralight-blue);
+  /* font-family: 'Oswald'; */
 }
 
 .pageIndicator span:last-child {
   color: var(--grey-blue);
+  /* font-family: 'Oswald'; */
 }
 
 .contactFormLabel {
@@ -338,4 +335,37 @@
 
 .logoHorizontal {
   height: 44px;
+}
+
+.pageSection {
+  grid-column: 1 / 12;
+}
+
+.textPWrapper {
+  position: relative;
+  height: 110px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.textPWrapper > * {
+  /* position: absolute; */
+  overflow: visible;
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  -webkit-text-stroke: 2px var(--dark-blue);
+  -webkit-text-fill-color: transparent;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  transition-duration: 0s;
+}
+
+.textPWrapper .frame2, .textPWrapper .frame3 {
+  -webkit-text-fill-color: transparent;
+}
+
+.fill {
+  -webkit-text-fill-color: var(--dark-blue);
 }

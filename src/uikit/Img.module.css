@@ -66,5 +66,6 @@
   /*position: absolute;*/
   top: calc(18px - 200%);
   right: calc(16px);
+  background: none;
 }
 

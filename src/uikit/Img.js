@@ -4,7 +4,7 @@ import g from './uikit.module.css'
 
 const Img = ({ className, src, alt, landscape, ...props }) => {
   return (
-      <div className={`${g.pWrapper} ${className} ${landscape ? s.landscape : s.portrait}`}>
+      <div className={`${g.pWrapper} pWrapper ${className} ${landscape ? s.landscape : s.portrait}`}>
         <div className={g.frame1}>
           <img src={src} alt={alt}/> 
         </div>
