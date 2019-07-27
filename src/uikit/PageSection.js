@@ -7,7 +7,7 @@ import g from 'uikit/uikit.module.css'
 
 const mapStateToProps = ({ pageIndicator }) => ({ pageIndicator })
 
-const PageSection = ({ first, total, current, pageIndicator, dispatch, className, ...props }) => {
+const PageSection = ({ first, total, current, pageIndicator, dispatch, horizontal, className, ...props }) => {
   const ifNeeded = (f, c) => {
     if(c !== pageIndicator.current) {
       dispatch(f(c))
@@ -15,9 +15,9 @@ const PageSection = ({ first, total, current, pageIndicator, dispatch, className
   }
   let w
   if(first) {
-    w =<Waypoint onEnter={() => dispatch(indicatorSet(1, total))}></Waypoint>
+    w = <Waypoint horizontal={horizontal || false} onEnter={() => dispatch(indicatorSet(1, total))}></Waypoint>
   } else {
-    w = <Waypoint onEnter={() => ifNeeded(indicatorSetCurrent, current)}></Waypoint>
+    w = <Waypoint horizontal={horizontal || false} onEnter={() => ifNeeded(indicatorSetCurrent, current)}></Waypoint>
   }
   return <div className={`${g.pageSection} ${className}`}>{w}</div>
 }
