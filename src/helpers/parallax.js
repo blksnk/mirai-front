@@ -13,7 +13,7 @@ const selectElements = g => {
 }
 
 const createEvent = (els, g) => {
-  document.querySelector('.contentContainer').onmousemove = e => {
+  document.querySelector('.App').onmousemove = e => {
     const d = getViewportDimensions()
     animate(e, d, els, g)
   }
