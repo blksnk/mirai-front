@@ -1,6 +1,7 @@
 import React from 'react'
 import PageSection from 'uikit/PageSection'
 import Button from 'uikit/Button'
+import downArrow from 'assets/icons/ios-arrow-down.svg'
 
 import s from './Contact.module.css'
 import g from 'uikit/uikit.module.css'
@@ -13,6 +14,12 @@ const initState = {
   clientEmail: '',
   phoneNumber: '',
 }
+
+const subjectValues = [
+  ['work', 'work'],
+  ['question', 'a random inquiry'],
+  ['random', 'something else'],
+]
 
 const Contact = ({ history, ...props }) => {
   const [state, setState] = React.useState(initState)
@@ -61,17 +68,16 @@ const Contact = ({ history, ...props }) => {
           finite
         >Hi, my name is</FormInput>
 
-        <FormInput
+        <DropDown
           className={s.s2i2}
           changeState={changeState}
           name='subject'
           type='text'
-          value={state.subject}
+          values={subjectValues}
           required
-          width={564}
           tabIndex={2}
           finite
-        >I'd like to get in touch with you<br/>about</FormInput>
+        >I'd like to get in touch with you<br/>about</DropDown>
 
         <TextBox
           className={s.s2t}
@@ -113,7 +119,7 @@ const Contact = ({ history, ...props }) => {
           finite
         >Or give me a call at</FormInput>
 
-        <Button title='submit' className={s.submit} onClick={() => triggerSubmit()}>Send that shit</Button>
+        <Button title='submit' className={s.submit} onClick={() => triggerSubmit()}>Send it</Button>
       </form>
 
     </React.Fragment>
@@ -153,7 +159,6 @@ const TextBox = ({
         changeState(name, e.target.value)
         textAreaAdjust(e.target)
       }}
-
     ></textarea>
   )
 }
@@ -196,6 +201,39 @@ const FormInput = ({
         }}
       />
       <span>{finite ? '.' : half ? ',' : ''}</span>
+    </label>
+  )
+}
+
+const DropDown = ({
+  className,
+  changeState,
+  name,
+  values,
+  required, 
+  tabIndex,
+  inline,
+  finite,
+  style,
+  children,
+  width
+}) => {
+  const renderValues = () => values.map(v => <option value={v.value} title={v[0]}>{v[1]}</option>)
+  return (
+    <label style={{ ...style }} className={`${className ? className : ''} ${g.contactFormLabel} ${inline ? g.contactFormLabelInline :''}`}>
+      {children}
+      <div className={g.selectWrapper}>     
+        <select
+            className={g.contactFromDropDown}
+            style={{ width }}
+            name={name}
+            required={required || false}
+            onChange={e => changeState(name, e.target.value)}>
+          {renderValues()}
+        </select>
+        <img src={downArrow} alt='sadly not expandable' className={g.selectArrow} />
+      </div>
+      <span>{finite ? '.' : ''}</span>
     </label>
   )
 }
