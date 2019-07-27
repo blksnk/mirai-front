@@ -22,6 +22,12 @@ const RightNav = ({ history }) => {
       setExpansion(false)
     }
   }
+  React.useEffect(() => {
+    document.querySelector('.contentContainer').addEventListener('click', retract)
+    return () => {
+      document.querySelector('.contentContainer').removeEventListener('click', retract)
+    }
+  })
   return (
   <nav className={`${s.nav} ${expanded ? s.expanded : ''}`}>
     <div className={s.left}>
