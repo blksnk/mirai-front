@@ -20,7 +20,22 @@
   --dark-grey: #2B2B2B;
 }
 
+/* hide scrollbar */
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 /*layout*/
+
+html {
+  scroll-behavior: smooth;
+}
 
 * {
   --unit: 12px;
@@ -31,15 +46,9 @@
   box-sizing: border-box;
 }
 
-/* hide scrollbar */
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-* {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+*:focus {
+  outline: none;
+  /* TODO replace this with global focus style for accessibility */
 }
 
 
