@@ -33,8 +33,7 @@
   writing-mode: vertical-lr;
   text-orientation: mixed;
   transform: rotate(180deg);
-  margin-top: 204px;
-  margin-bottom: auto;
+  margin: auto 0;
   text-decoration: none;
   color: var(--medium-blue-desat);
   font-weight: 700;
