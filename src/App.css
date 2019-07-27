@@ -42,10 +42,14 @@
   bottom: 0;
   height: 100%;
   width: 100%;
+  transition-duration: .3s;
+  will-change: background-color;
 }
 
 .gridLine {
   border-right: 2px solid var(--extralight-blue);
+  transition-duration: .3s;
+  will-change: border-color;
 }
 
 .contentContainer {
@@ -61,5 +65,5 @@
   overflow-y: scroll;
   overflow-x: hidden;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
