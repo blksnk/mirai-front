@@ -113,7 +113,7 @@ const Contact = ({ history, ...props }) => {
           finite
         >Or give me a call at</FormInput>
 
-        <Button formId='contactForm' title='submit' className={s.submit} onClick={() => triggerSubmit()}>Send that shit!</Button>
+        <Button title='submit' className={s.submit} onClick={() => triggerSubmit()}>Send that shit</Button>
       </form>
 
     </React.Fragment>
