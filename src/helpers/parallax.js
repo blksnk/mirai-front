@@ -1,3 +1,12 @@
+import g from 'uikit/uikit.module.css'
+
+const trigger = () => {
+  const els = selectElements(g)
+  if(els) {
+    createEvent(els, g)
+  }
+}
+
 const selectElements = g => {
   const el = document.querySelectorAll(`.${g.pWrapper}`)
   return el
@@ -16,24 +25,24 @@ const getViewportDimensions = () => {
   return { w, h }
 }
 
+const basisX = 8
+const basisY = 9
+
 const animate = (e, d, els, g) => {
   const mX = e.clientX //mouse X
   const mY = e.clientY //mouse Y
   const { w, h } = d //vp width, vp height
   
   //calculate coef
-  let coefX = 0
-  let coefY = 0
-  // calc coef X
-  coefX = Math.round(((mX / w + .5) * 10 - 10) * 100) / 100
-  coefY = Math.round(((mY / h + .5) * 10 - 10) * 100) / 100
+  let coefX = Math.round(((mX / w + .5) * 10 - 10) * 100) / 100
+  let coefY = Math.round(((mY / h + .5) * 10 - 10) * 100) / 100
 
   //limit to max values
   if(coefY > 9) {
-    coefY = 9
+    coefY = basisY
   }
   if(coefX > 8) {
-    coefX = 8
+    coefX = basisX
   }
   
   //apply to each element
@@ -46,12 +55,10 @@ const animate = (e, d, els, g) => {
 const applyEffect = (el, coefX, coefY, g) => {
   const frame2 = el.querySelector(`.${g.frame2}`)
   const frame3 = el.querySelector(`.${g.frame3}`)
-  const basisX = 8
-  const basisY = 9
-  const offsetXf2 = - basisX + coefX * 1.5
-  const offsetYf2 = basisY - coefY * 1.5
-  const offsetXf3 = - 2 * basisX + coefX * 3
-  const offsetYf3 = 2 * basisY - coefY * 3
+  const offsetXf2 = - basisX + coefX * 1.2
+  const offsetYf2 = basisY - coefY * 1.2
+  const offsetXf3 = - 2 * basisX + coefX * 1.4
+  const offsetYf3 = 2 * basisY - coefY * 1.4
   if(frame2) {
     frame2.style.right = `${offsetXf2}px`
     frame2.style.top = `calc(${offsetYf2}px - 100%)`
@@ -64,5 +71,6 @@ const applyEffect = (el, coefX, coefY, g) => {
 
 export {
   selectElements,
-  createEvent
+  createEvent,
+  trigger
 }
