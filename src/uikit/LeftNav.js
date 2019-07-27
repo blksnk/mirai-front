@@ -23,11 +23,8 @@ const LeftNav = ({ history }) => {
 }
 
 const ContactRedirect = ({ history }) => (
-  <a href='/contact' className={s.email} onClick={e => {
-    e.preventDefault()
-    if(window.location.pathname !== '/contact') {
-      history.push('/contact')
-  }}}>hello.mirai.dev@gmail.com</a>
+  <a href='mailto:hello.mirai.dev@gmail.com' target='_blank' rel='noopener noreferrer' className={s.email}>
+  hello.mirai.dev@gmail.com</a>
 )
 
 export default withRouter(LeftNav)
