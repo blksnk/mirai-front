@@ -130,6 +130,10 @@
   content: '.';
 }
 
+.btn span:focus {
+  outline: none;
+}
+
 .pageTitle {
   font-weight: 700;
   color: var(--medium-blue);
@@ -201,6 +205,42 @@
   outline: none;
   border-color: var(--black);
 }
+
+.contactFromDropDown {
+  color: var(--black);
+  -moz-appearance:none; /* Firefox */
+  -webkit-appearance:none; /* Safari and Chrome */
+  appearance:none;
+  font-size: 26px;
+  /* height: 30px; */
+  font-weight: 600;
+  width: 264px;
+  background: none;
+  border: none;
+  position: relative;
+  cursor: pointer;
+
+}
+
+.selectWrapper {
+  margin: 0 0 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 3px solid var(--medium-dark-desat);
+  cursor: pointer;
+}
+
+.selectArrow {
+  /* position: absolute; */
+  width: 24px;
+}
+
+.contactFromDropDown * {
+  background-color: var(--extralight-blue);
+}
+
+
 
 .textBox {
   display: block;
@@ -323,10 +363,11 @@
 .logoVector {
   cursor: pointer;
   transition-duration: .3s;
+  fill: var(--background);
 }
 
 .logoVector:hover {
-  fill: var(--grey-blue);
+  fill: var(--light-blue);
 }
 
 .logoVertical {
