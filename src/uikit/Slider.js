@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatNumber } from 'helpers/formatNumber'
 
 import g from 'uikit/uikit.module.css'
 
@@ -20,7 +21,7 @@ export const InfoSlider = ({ array, className, numbers }) => {
 const RenderSlide = ({ slide, numbers, i }) => {
   const { img, alt, onClick, title, p, color } = slide
   return (
-    <div className={`${g.sliderSlide} ${g.pWrapper}  ${g[color]}`}>
+    <div className={`${g.sliderSlide} ${g.pWrapper} ${color} ${g[color]}`}>
       <RenderFrame1 img={img} alt={alt} onClick={onClick} numbers={numbers} i={i}/>
       <RenderInfo title={title} p={p} color={color} />
     </div>
@@ -51,13 +52,4 @@ const RenderInfo = ({ title, p, color }) => (
   </div>
 )
 
-const RenderNumber = ({ i }) => <span className={g.sliderNumber}>{formatNumber(i + 1)}</span>
-
-const formatNumber = n => {
-  console.log(n)
-  if(n < 10) {
-    return '0' + String(n)
-  } else {
-    return String(n)
-  }
-}
+const RenderNumber = ({ i }) => <span className={`projectNumber ${g.sliderNumber}`}>{formatNumber(i + 1)}</span>
