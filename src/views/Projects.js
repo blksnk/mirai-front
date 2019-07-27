@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { darkModeSet, darkModeToggle } from 'store/actions/actions'
 import { formatNumber } from 'helpers/formatNumber'
-import { selectElements, createEvent } from 'helpers/parallax.js'
+import { selectElements, createEvent } from 'helpers/parallax'
+import { translateNode } from 'helpers/translateNode'
 
 import s from 'views/Projects.module.css'
 import g from 'uikit/uikit.module.css'
@@ -126,20 +127,14 @@ const NumberScroller = ({ numbers }) =>
 </div>
 
 const scroll = (i, applyDarkMode, setCurrentIndex) => {
-  const selector = `#projectThumb${i}, #projectNumber${i}, #projectText${i}`
-  const all = document.querySelectorAll(selector)
-  const options = { behavior: 'smooth', block: 'center', inline: 'start', }
-  console.log(all)
-  if(all.length > 0) {
-    all.forEach((el, elIndex) => {
-      if(el) {
-        if(elIndex === 2) { //different properties for text scroll
-          el.scrollIntoView({...options, block: 'start'})
-        } else {
-          el.scrollIntoView(options)
-        }
-      }
-    })
+  const text = document.getElementById(`projectText${i}`)
+  const thumb = document.getElementById(`projectThumb${i}`)
+  const number = document.getElementById(`projectNumber${i}`)
+  
+  if(i >= 0 && i <= projectInfo.length - 1) {
+    translateNode(text, 300)
+    translateNode(thumb, 300)
+    translateNode(number, 300, true)
     applyDarkMode(i)
     setCurrentIndex(i)
   }
@@ -147,7 +142,6 @@ const scroll = (i, applyDarkMode, setCurrentIndex) => {
 
 const applyDarkMode = (darkMode, projects, i, setDarkMode) => {
   const { color } = projects[i]
-  console.log(color)
   if(darkMode && color === 'light') {
     setDarkMode(false)
   } else if(!darkMode && color === 'dark') {
