@@ -1,78 +1,147 @@
 import React from 'react'
+import {Waypoint} from 'react-waypoint'
+import { connect } from 'react-redux'
+import { darkModeSet, darkModeToggle } from 'store/actions/actions'
+import { formatNumber } from 'helpers/formatNumber'
 
-import'./Projects.css'
-import home from 'assets/images/home1.jpg'
-import hole from 'assets/images/hole.jpg'
-import wadyz1 from 'assets/images/wadyz1.jpg'
+import s from 'views/Projects.module.css'
+import g from 'uikit/uikit.module.css'
+import { selectElements, createEvent } from 'helpers/parallax.js'
 
-const images = [home, hole, wadyz1]
-const l = images.length
-let timeout = false
+import tower from 'assets/images/tower.jpg'
+import dark from 'assets/images/dark.jpg'
 
-const Projects = () => {
-  const [currentIndex, setState] = React.useState(0)
-  const [scrolling, setScroll] = React.useState(false)
+import TextParallax from 'uikit/TextParallax'
+import Button from 'uikit/Button'
+import PageSection from 'uikit/PageSection'
 
-  window.addEventListener('wheel', e => {
-    const { deltaY } = e
-    let direction = deltaY < 0 ? 'up' : 'down'
+const mapStateToProps = ({ darkMode, userDarkMode }) => ({ darkMode, userDarkMode })
+const mapDispatchToProps = dispatch => ({
+  setDarkMode: bool => dispatch(darkModeSet(bool)),
+  toggleDarkMode: () => dispatch(darkModeToggle()),
+})
 
-    scrollPage(currentIndex, l, direction, setState, scrolling, setScroll)
-    return false
+const projectInfo = [
+    {
+      title: <span>enjoying the <br/> <TextParallax>cityscape</TextParallax></span>,
+      thumb: tower,
+      subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
+      color: 'light',
+    },
+    {
+      title: <span>entering a <br/> <TextParallax>dark</TextParallax> place</span>,
+      thumb: dark,
+      subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
+      color: 'dark',
+    }
+  ]
+
+const Projects = ({ history, darkMode, setDarkMode, toggleDarkMode, userDarkMode, ...props }) => {
+  React.useEffect(() => {
+    const els = selectElements(g)
+    if(els) {
+      createEvent(els, g)
+    }
+    return () => {
+      if(!userDarkMode && darkMode) {
+        setDarkMode(false)
+      }
+    }
   })
-
   return (
-    <div className="projectWrapper">
-      <Mask src={images}/>
-
-      <Borders/>
-    </div>
+    <React.Fragment>
+      <Wrapper>
+        {projectInfo.map((item, i) => 
+          <RenderProject
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
+            applyDarkMode={i => applyDarkMode(darkMode, projectInfo, i, setDarkMode)}
+            key={`project${i}`}
+            i={i}
+            project={item}
+          />)}
+      </Wrapper>
+      
+    </React.Fragment>
   )
 }
 
-const scrollPage = (currentIndex, length, direction, setState, scrolling, setScroll) => {
-  let scrollToIndex
-  let change = false
-  if (direction === 'down' && currentIndex < length - 1) {
-    scrollToIndex = currentIndex + 1
-    change = true
-    setState(scrollToIndex)
-  } else if (direction === 'up' && currentIndex > 0) {
-    scrollToIndex = currentIndex - 1
-    change = true
-    setState(scrollToIndex)
+const Wrapper = ({ children, ...props }) => <div {...props} className={s.wrapper}>
+  {children}
+</div>
+
+const RenderProject = ({ darkMode, setDarkMode, applyDarkMode, project, i }) => {
+  const { title, subtitle, thumb, color } = project
+  
+  
+  return (
+    <Waypoint
+      horizontal
+    >
+      <div
+        className={`${s.project} ${g[color]}`}
+        id={`project${i}`}
+      >
+        <PageSection
+          first={i === 0 ? true : false}
+          total={projectInfo.length}
+          current={i}
+          horizontal
+        />
+        <div className={s.left}>
+          <span className={`${s.number} projectNumber`}>{formatNumber(i + 1)}</span>
+        </div>
+
+        <Thumb src={thumb} alt={title}/>
+        <Title>{title}</Title>
+        <h3>{subtitle}</h3>
+        <button onClick={() => scrollTo(i - 1, applyDarkMode)} className={`${s.prev} projectPrevBtn`}>Previous</button>
+        <Button onClick={() => scrollTo(i + 1, applyDarkMode)} className={s.next}>next project</Button>
+      </div>
+    </Waypoint>
+  )
+}
+
+
+const TextScroller = ({ projects }) => {
+  return null
+}
+
+const ThumbScroller = ({ projects }) => {
+  return null
+}
+
+const NumberScroller = ({ projects }) => {
+
+}
+
+const scrollTo = (i, applyDarkMode) => {
+  const el = document.getElementById(`project${i}`)
+  if(el) {
+    el.scrollIntoView({ behavior: 'smooth' })
+    setTimeout(() => applyDarkMode(i), 200)
   }
+}
 
-  if(change && !scrolling) {
-    setScroll(true)
-    let scrollTo = document.getElementById(`clippedImage${scrollToIndex}`)
-    console.log('current: ', currentIndex ,'  ', 'scrollTo: ', scrollToIndex )
-    change = false
-    scrollTo.scrollIntoView( { behavior: 'smooth', block: 'center', inline: 'center' } )
-    setTimeout(() => setScroll(false), 250)
-
+const applyDarkMode = (darkMode, projects, i, setDarkMode) => {
+  const { color } = projects[i]
+  console.log(color)
+  if(darkMode && color === 'light') {
+    setDarkMode(false)
+  } else if(!darkMode && color === 'dark') {
+    setDarkMode(true)
   }
 }
 
 
-const Mask = ({ src }) => <div className='mask'>
-  {src.map((img, i) => <img
-      src={img}
-      alt=""
-      className="clippedImage"
-      id={`clippedImage${i}`}
-      key={`clippedImage${i}`}
-    />)
-  
-  }
+const Title = ({ children }) => 
+<div className={s.titleSection}>
+  <h1 className={`projectTitle  ${s.title}`}>{children}</h1>
 </div>
 
-const Borders = () => <>
-  <div className='border' id='border0'></div>
-  <div className='border' id='border1'></div>
-  <div className='border' id='border2'></div>
-  <div className='border' id='border3'></div>
-  <div className='border' id='border4'></div>
-</>
+const Thumb = ({ src, alt }) =>
+<div className={s.thumbWrapper}>  
+  <img className={s.thumb} src={src} alt={alt}/>
+</div>
 
-export default Projects
+export default connect(mapStateToProps, mapDispatchToProps)(Projects)
