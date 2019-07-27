@@ -1,19 +1,19 @@
 import React from 'react'
-import {Waypoint} from 'react-waypoint'
 import { connect } from 'react-redux'
 import { darkModeSet, darkModeToggle } from 'store/actions/actions'
 import { formatNumber } from 'helpers/formatNumber'
+import { selectElements, createEvent } from 'helpers/parallax.js'
 
 import s from 'views/Projects.module.css'
 import g from 'uikit/uikit.module.css'
-import { selectElements, createEvent } from 'helpers/parallax.js'
 
 import tower from 'assets/images/tower.jpg'
 import dark from 'assets/images/dark.jpg'
+import home2 from 'assets/images/home2.jpg'
+import light from 'assets/images/light.jpg'
 
 import TextParallax from 'uikit/TextParallax'
 import Button from 'uikit/Button'
-import PageSection from 'uikit/PageSection'
 
 const mapStateToProps = ({ darkMode, userDarkMode }) => ({ darkMode, userDarkMode })
 const mapDispatchToProps = dispatch => ({
@@ -22,19 +22,37 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const projectInfo = [
-    {
-      title: <span>enjoying the <br/> <TextParallax>cityscape</TextParallax></span>,
-      thumb: tower,
-      subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
-      color: 'light',
-    },
-    {
-      title: <span>entering a <br/> <TextParallax>dark</TextParallax> place</span>,
-      thumb: dark,
-      subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
-      color: 'dark',
-    }
-  ]
+  {
+    title: <span>enjoying the <br/> <TextParallax>cityscape</TextParallax></span>,
+    thumb: tower,
+    subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
+    color: 'light',
+  },
+  {
+    title: <span>a calming <br/> <TextParallax>breeze...</TextParallax></span>,
+    thumb: light,
+    subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
+    color: 'light',
+  },
+  {
+    title: <span>reaching a <br/> <TextParallax>dark</TextParallax> place</span>,
+    thumb: dark,
+    subtitle: 'Culpa laboris dolore ex ex ut laborum pariatur in reprehenderit excepteur ut deserunt in adipisicing non eu sit in in qui sed.',
+    color: 'dark',
+  },
+  {
+    title: <span>Sweet <br/><TextParallax>sunrise</TextParallax></span>,
+    thumb: home2,
+    subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
+    color: 'dark',
+  },
+  {
+    title: <span>low contrast<br/> <TextParallax>goodness</TextParallax></span>,
+    thumb: light,
+    subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
+    color: 'light',
+  },
+]
 
 const Projects = ({ history, darkMode, setDarkMode, toggleDarkMode, userDarkMode, ...props }) => {
   React.useEffect(() => {
@@ -49,77 +67,81 @@ const Projects = ({ history, darkMode, setDarkMode, toggleDarkMode, userDarkMode
     }
   })
   return (
-    <React.Fragment>
-      <Wrapper>
-        {projectInfo.map((item, i) => 
-          <RenderProject
-            darkMode={darkMode}
-            setDarkMode={setDarkMode}
-            applyDarkMode={i => applyDarkMode(darkMode, projectInfo, i, setDarkMode)}
-            key={`project${i}`}
-            i={i}
-            project={item}
-          />)}
-      </Wrapper>
-      
-    </React.Fragment>
+    <ProjectView
+      darkMode={darkMode}
+      setDarkMode={setDarkMode}
+      applyDarkMode={i => applyDarkMode(darkMode, projectInfo, i, setDarkMode)}
+      projects={projectInfo}
+    />
   )
 }
 
-const Wrapper = ({ children, ...props }) => <div {...props} className={s.wrapper}>
-  {children}
+const ProjectView = ({ projects, darkMode, setDarkMode, applyDarkMode }) => {
+  const [currentIndex, setCurrentIndex] = React.useState(0)
+
+  const titles = projects.map(item => item.title)
+  const thumbs = projects.map(item => item.thumb)
+  const subtitles = projects.map(item => item.subtitle)
+  const numbers = projects.map((item, i) => formatNumber(i + 1))
+
+  return (
+    <div className={s.wrapper}>
+      <ThumbScroller {...{ thumbs }}/>
+      <NumberScroller {...{ numbers }}/>
+      <TextScroller {...{ titles, subtitles }}/>
+
+      <button onClick={() => scroll(currentIndex - 1, applyDarkMode, setCurrentIndex)} className={`${s.prev} projectPrevBtn`}>Previous</button>
+      <Button onClick={() => scroll(currentIndex + 1, applyDarkMode, setCurrentIndex)} className={s.next}>next project</Button>
+    </div>
+  )
+}
+
+const ThumbScroller = ({ thumbs }) => 
+<div className={s.thumbScroller}>
+  {thumbs.map((src, i) => (
+    <div className={s.thumbWrapper} key={`projectThumb${i}`} id={`projectThumb${i}`}>
+      <img className={s.thumb} src={src} alt=''/>
+    </div>
+  ))}
 </div>
 
-const RenderProject = ({ darkMode, setDarkMode, applyDarkMode, project, i }) => {
-  const { title, subtitle, thumb, color } = project
-  
-  
-  return (
-    <Waypoint
-      horizontal
-    >
-      <div
-        className={`${s.project} ${g[color]}`}
-        id={`project${i}`}
-      >
-        <PageSection
-          first={i === 0 ? true : false}
-          total={projectInfo.length}
-          current={i}
-          horizontal
-        />
-        <div className={s.left}>
-          <span className={`${s.number} projectNumber`}>{formatNumber(i + 1)}</span>
-        </div>
+const TextScroller = ({ titles, subtitles }) => 
+<div className={s.textScroller}>
+  {titles.map((title, i) => 
+    <div className={s.textWrapper} key={`projectText${i}`} id={`projectText${i}`}>
+      <h1 className={`projectTitle  ${s.title}`}>{title}</h1>
 
-        <Thumb src={thumb} alt={title}/>
-        <Title>{title}</Title>
-        <h3>{subtitle}</h3>
-        <button onClick={() => scrollTo(i - 1, applyDarkMode)} className={`${s.prev} projectPrevBtn`}>Previous</button>
-        <Button onClick={() => scrollTo(i + 1, applyDarkMode)} className={s.next}>next project</Button>
-      </div>
-    </Waypoint>
-  )
-}
+      <h3 className={s.subtitle}>{subtitles[i]}</h3>
+    </div>
+  )}
+</div>
 
+const NumberScroller = ({ numbers }) => 
+<div className={s.numberScroller}>
+  {numbers.map((n, i) => 
+    <span className={`${s.number} projectNumber`} key={`projectNumber${i}`} id={`projectNumber${i}`}>
+      {n}
+    </span>
+  )}
+</div>
 
-const TextScroller = ({ projects }) => {
-  return null
-}
-
-const ThumbScroller = ({ projects }) => {
-  return null
-}
-
-const NumberScroller = ({ projects }) => {
-
-}
-
-const scrollTo = (i, applyDarkMode) => {
-  const el = document.getElementById(`project${i}`)
-  if(el) {
-    el.scrollIntoView({ behavior: 'smooth' })
-    setTimeout(() => applyDarkMode(i), 200)
+const scroll = (i, applyDarkMode, setCurrentIndex) => {
+  const selector = `#projectThumb${i}, #projectNumber${i}, #projectText${i}`
+  const all = document.querySelectorAll(selector)
+  const options = { behavior: 'smooth', block: 'center', inline: 'start', }
+  console.log(all)
+  if(all.length > 0) {
+    all.forEach((el, elIndex) => {
+      if(el) {
+        if(elIndex === 2) { //different properties for text scroll
+          el.scrollIntoView({...options, block: 'start'})
+        } else {
+          el.scrollIntoView(options)
+        }
+      }
+    })
+    applyDarkMode(i)
+    setCurrentIndex(i)
   }
 }
 
@@ -132,16 +154,5 @@ const applyDarkMode = (darkMode, projects, i, setDarkMode) => {
     setDarkMode(true)
   }
 }
-
-
-const Title = ({ children }) => 
-<div className={s.titleSection}>
-  <h1 className={`projectTitle  ${s.title}`}>{children}</h1>
-</div>
-
-const Thumb = ({ src, alt }) =>
-<div className={s.thumbWrapper}>  
-  <img className={s.thumb} src={src} alt={alt}/>
-</div>
 
 export default connect(mapStateToProps, mapDispatchToProps)(Projects)
