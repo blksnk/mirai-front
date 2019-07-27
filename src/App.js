@@ -1,6 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 import 'stylesheets/root.css'
+import 'stylesheets/darkmode.css'
 import './App.css'
 
 import Projects from 'views/Projects'
@@ -10,7 +12,7 @@ import Contact from 'views/Contact'
 import LeftNav from 'uikit/LeftNav'
 import RightNav from 'uikit/RightNav'
 
-const App = () => {
+const App = ({ darkMode }) => {
   return (
   <div className='App'>
     <div className='navLeftWrapper'>
@@ -18,16 +20,17 @@ const App = () => {
     </div>
 
     <div className='middle'>
-      <div className='contentContainer'>
+      <div className={`contentContainer ${darkMode ? 'dark' : 'light'}`}>
 
       <Switch>
+        <Route path='/projects' component={Projects}/>
         <Route path='/about' component={About}/>
         <Route path='/contact' component={Contact}/>
       </Switch>
         
       </div>
 
-      <GridLines/>
+      <GridLines darkMode={darkMode}/>
     </div>
 
     <div className='navRightWrapper'>
@@ -36,9 +39,8 @@ const App = () => {
   </div>
 )}
 
-
-
-const GridLines = () => <div className='linesWrapper'>
+const GridLines = ({ darkMode }) => 
+<div className={`linesWrapper ${darkMode ? 'dark' : 'light'}`}>
   <div className='gridLine'></div>
   <div className='gridLine'></div>
   <div className='gridLine'></div>
@@ -47,6 +49,6 @@ const GridLines = () => <div className='linesWrapper'>
 </div>
 
 
+const mapStateToProps = ({ darkMode }) => ({ darkMode })
 
-
-export default App
+export default connect(mapStateToProps)(App)
