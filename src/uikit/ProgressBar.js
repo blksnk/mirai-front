@@ -1,43 +1,37 @@
 import React, { Component } from 'react';
-import Progress from 'react-progressbar';
+import s from 'stylesheets/progress.css'
 import _ from 'underscore';
-import $ from 'jquery';
 
-export default class ProgressBar extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {progress: 0};
-	}
+const ProgressBarHooks = ({ parent }) => {
+	const parentHTML = document.querySelector(`.${parent}`)
+	const [progress, setProgress] = React.useState(computePercentage(parentHTML))
 
-	componentDidMount() {
-		const parent = $(`.${this.props.parentElement}`);
-		const parentHTML = document.querySelector(`.${this.props.parentElement}`);
-		parentHTML.addEventListener('scroll', this.debounceScroll.bind(this), {passive: true});
-		this.setState({parent: parentHTML, scrollHeight: parentHTML.scrollHeight, parentHeight: parent.height()});
-	}
+	React.useEffect(() => {
+		if(parentHTML) {
+			parentHTML.addEventListener('scroll', e => debounceScroll(e, progress, setProgress), {passive: true})
+			return () => parentHTML.removeEventListener('scroll', e => debounceScroll(e, progress, setProgress))
+		}
+	}, [parent, parentHTML, progress, setProgress])
 
-	componentWillUnmount() {
-    	this.state.parent.removeEventListener('scroll', this.handleScroll);
-	}
+	return (
+	  <div className='progressbar-container'>
+	  	<div className='progressbar-progress' style={{ height: `${progress}%` }}></div>
+	  </div>
+	)
+}
 
-	debounceScroll(event) {
-		_.debounce(this.handleScroll(event), 
-		200,
-		false);
-	}
+const debounceScroll = (e, progress, setProgress) => {
+	_.debounce(handleScroll(e, progress, setProgress), 50, false)
+}
 
-	handleScroll(event) {
-		//get current and total scroll
-    	let currentScroll = Math.min(Math.max(parseInt(Math.ceil((event.target.scrollTop + event.target.clientHeight)/event.target.scrollHeight*100)), 0), 100);
-    	if(currentScroll === 99) {
-    		currentScroll = 100;
-    	};
-    	this.setState({progress: currentScroll});
-	}
+const computePercentage = t => Math.min(Math.max(Math.round(((t.scrollTop + t.clientHeight)/t.scrollHeight*100) * 100) / 100, 0), 100)
 
-	render() {
-		return (
-			<Progress completed={this.state.progress}/>
-		);
+const handleScroll = (e, progress, setProgress) => {
+	let currentScroll = computePercentage(e.target)
+	if(currentScroll !== progress) {
+		setProgress(currentScroll)
+		// requestAnimationFrame(() => setProgress(currentScroll))
 	}
 }
+
+export default ProgressBarHooks
