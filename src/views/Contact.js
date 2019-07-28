@@ -39,7 +39,6 @@ const Contact = ({ history, ...props }) => {
       createEvent(els, g)
     }
   })
-  console.log(state)
   return (
     <React.Fragment>
       <div className='titleSection'>
