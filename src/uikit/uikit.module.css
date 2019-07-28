@@ -141,12 +141,12 @@
   writing-mode: vertical-rl;
   text-orientation: mixed;
   transform: rotate(180deg);
-  margin-bottom: 48px;
   font-style: italic;
   letter-spacing: 1px;
 }
 
 .pageIndicator {
+  margin-top: 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
