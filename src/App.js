@@ -21,13 +21,11 @@ const App = ({ darkMode }) => {
 
     <div className='middle'>
       <div className={`contentContainer ${darkMode ? 'dark' : 'light'}`}>
-
-      <Switch>
-        <Route path='/projects' component={Projects}/>
-        <Route path='/about' component={About}/>
-        <Route path='/contact' component={Contact}/>
-      </Switch>
-        
+        <Switch>
+          <Route path='/projects' component={Projects}/>
+          <Route path='/about' component={About}/>
+          <Route path='/contact' component={Contact}/>
+        </Switch> 
       </div>
 
       <GridLines darkMode={darkMode}/>
