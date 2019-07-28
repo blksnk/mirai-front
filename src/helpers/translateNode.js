@@ -4,7 +4,7 @@ export const translateNode = (el, duration, vertical) => {
   const start = vertical ? parent.scrollTop : parent.scrollLeft
   const change = to - start
   let currentTime = 0
-  let increment = 20
+  let increment = 10
         
     var animateScroll = function(timestamp){        
         currentTime += increment;
