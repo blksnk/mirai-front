@@ -96,7 +96,7 @@ const rootReducer = (state = initState, action) => {
     }
     case TITLE_SET: {
       const { title } = action
-      document.title = `${title} - mirai.`
+      document.title = `Mirai - ${title}.`
       return {
         ...state,
         pageTitle: title
