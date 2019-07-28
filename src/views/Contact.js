@@ -217,7 +217,7 @@ const DropDown = ({
   children,
   width
 }) => {
-  const renderValues = () => values.map(v => <option value={v.value} title={v[0]}>{v[1]}</option>)
+  const renderValues = () => values.map(v => <option key={`option_${v[0]}`} value={v[0]} title={v[0]}>{v[1]}</option>)
   return (
     <label style={{ ...style }} className={`${className ? className : ''} ${g.contactFormLabel} ${inline ? g.contactFormLabelInline :''}`}>
       {children}
