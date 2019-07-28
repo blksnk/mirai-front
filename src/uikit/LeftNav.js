@@ -8,6 +8,15 @@ import PageIndicator from 'uikit/PageIndicator'
 import s from './LeftNav.module.css'
 
 const LeftNav = ({ history }) => {
+  const [displayIndicator, setDisplayIndicator] = React.useState(false)
+  history.listen(location => {
+    console.log(location)
+    if(location.pathname === '/about' && !displayIndicator) {
+      setDisplayIndicator(true)
+    } else if(displayIndicator) {
+      setDisplayIndicator(false)
+    }
+  })
   return (
   <nav className={s.nav}>
     <Logo vertical history={history}/>
@@ -16,7 +25,9 @@ const LeftNav = ({ history }) => {
 
     <div className={s.bottomWrapper}>
       <PageTitle className={s.pageTitle}/>
-      <PageIndicator/>
+      {displayIndicator
+      ? <PageIndicator/>
+      : null}
     </div>
   </nav>
   )
