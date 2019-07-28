@@ -135,7 +135,7 @@ const scroll = (i, applyDarkMode, setCurrentIndex) => {
     translateNode(text, 300)
     translateNode(thumb, 300)
     translateNode(number, 300, true)
-    applyDarkMode(i)
+    setTimeout(() => applyDarkMode(i), 300)
     setCurrentIndex(i)
   }
 }
