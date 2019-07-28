@@ -1,0 +1,14 @@
+.progressbar-container {
+  z-index: 250;
+  height: 100vh;
+  width: 12px;
+  position: fixed;
+  top: 0;
+  right: var(--nav-right-w);
+}
+
+.progressbar-progress {
+  background-color: var(--light-blue);
+  width: 100%;
+  transition-duration: .3s;
+}
