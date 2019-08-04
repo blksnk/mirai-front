@@ -10,7 +10,6 @@ import s from './LeftNav.module.css'
 const LeftNav = ({ history }) => {
   const [displayIndicator, setDisplayIndicator] = React.useState(false)
   history.listen(location => {
-    console.log(location)
     if(location.pathname === '/about' && !displayIndicator) {
       setDisplayIndicator(true)
     } else if(displayIndicator) {

@@ -11,7 +11,6 @@ const PageTitle = ({ className, history, storeTitle, dispatch }) => {
 
   history.listen((location) => {
     const t = location.pathname.split('/')[1]
-    console.log('title: ', t)
     if(storeTitle !== t) {
       if(t === '') {
         dispatch(pageTitleSet('home'))
