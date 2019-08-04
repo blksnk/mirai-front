@@ -410,3 +410,9 @@
 .fill {
   -webkit-text-fill-color: var(--dark-blue);
 }
+
+.animatedImgWrapper {
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+}
