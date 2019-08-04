@@ -9,6 +9,8 @@ import Projects from 'views/Projects'
 import About from 'views/About'
 import Contact from 'views/Contact'
 
+import PlayGround from 'uikit/PlayGround'
+
 import LeftNav from 'uikit/LeftNav'
 import RightNav from 'uikit/RightNav'
 
@@ -25,6 +27,7 @@ const App = ({ darkMode }) => {
           <Route path='/projects' component={Projects}/>
           <Route path='/about' component={About}/>
           <Route path='/contact' component={Contact}/>
+          <Route path='/playground' component={PlayGround}/>
         </Switch> 
       </div>
 
