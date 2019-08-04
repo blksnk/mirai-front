@@ -24,6 +24,7 @@
   height: 85px;
   overflow: hidden;
   position: relative;
+  scroll-snap-type: x mandatory;
 }
 
 .number {
@@ -37,6 +38,7 @@
   transition-duration: .3s;
   height: 100%;
   /* margin-bottom: 100%; */
+  scroll-snap-align: start;
 }
 
 .thumbScroller {
@@ -58,13 +60,15 @@
   flex-grow: 1;
   justify-content: center;
   align-items: center;
+  scroll-snap-type: x mandatory;
+  scroll-snap-align: center;
 }
 
 .thumb {
   min-height: 100%;
   max-height: 160%;
   min-width: 100%;
-  max-width: 160%;
+  max-width: 100%;
 }
 
 .textScroller {
@@ -86,7 +90,7 @@
   /* margin-right: 100%; */
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(3, 1fr)
+  grid-template-rows: repeat(3, 1fr);
 }
 
 .titleSection {
