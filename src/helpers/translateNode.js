@@ -4,19 +4,19 @@ export const translateNode = (el, duration, vertical) => {
   const start = vertical ? parent.scrollTop : parent.scrollLeft
   const change = to - start
   let currentTime = 0
-  let increment = 10
+  let increment = 15
         
-    var animateScroll = function(timestamp){        
-        currentTime += increment;
-        var val = Math.easeInOutQuad(currentTime, start, change, duration);
-        if(vertical) {
-          parent.scrollTop = val;
-        } else {
-          parent.scrollLeft = val;
-        }
-        if(currentTime < duration) {
-            setTimeout(() => requestAnimationFrame(animateScroll), increment);
-        }
+    const animateScroll = function(timestamp){        
+      currentTime += increment;
+      const val = Math.easeInOutQuad(currentTime, start, change, duration);
+      if(vertical) {
+        parent.scrollTop = val;
+      } else {
+        parent.scrollLeft = val;
+      }
+      if(currentTime < duration) {
+          setTimeout(() => requestAnimationFrame(animateScroll), increment);
+      }
     };
     requestAnimationFrame(animateScroll)
 }
