@@ -15,6 +15,7 @@ import light from 'assets/images/light.jpg'
 
 import TextParallax from 'uikit/TextParallax'
 import Button from 'uikit/Button'
+import AnimatedImg from 'uikit/AnimatedImg'
 
 const mapStateToProps = ({ darkMode, userDarkMode }) => ({ darkMode, userDarkMode })
 const mapDispatchToProps = dispatch => ({
@@ -99,7 +100,7 @@ const ThumbScroller = ({ thumbs }) =>
 <div className={s.thumbScroller}>
   {thumbs.map((src, i) => (
     <div className={s.thumbWrapper} key={`projectThumb${i}`} id={`projectThumb${i}`}>
-      <img className={s.thumb} src={src} alt=''/>
+      <AnimatedImg className={s.thumb} src={src} alt=''/>
     </div>
   ))}
 </div>
