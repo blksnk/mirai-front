@@ -42,5 +42,5 @@
 
 .email:hover {
   color: var(--medium-blue);
-  box-shadow: -3px 0 0 var(--medium-blue);
+  box-shadow: -2px 0 0 var(--medium-blue);
 }
