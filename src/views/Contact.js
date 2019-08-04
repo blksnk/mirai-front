@@ -5,7 +5,7 @@ import downArrow from 'assets/icons/ios-arrow-down.svg'
 
 import s from './Contact.module.css'
 import g from 'uikit/uikit.module.css'
-import { selectElements, createEvent } from 'helpers/parallax.js'
+import { trigger, removeEvent } from 'helpers/parallax.js'
 
 const initState = {
   name: '',
@@ -34,10 +34,8 @@ const Contact = ({ history, ...props }) => {
   }
 
   React.useEffect(() => {
-    const els = selectElements(g)
-    if(els) {
-      createEvent(els, g)
-    }
+    trigger()
+    return removeEvent
   })
   return (
     <React.Fragment>

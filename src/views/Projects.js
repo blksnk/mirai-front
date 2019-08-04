@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { darkModeSet, darkModeToggle } from 'store/actions/actions'
 import { formatNumber } from 'helpers/formatNumber'
-import { selectElements, createEvent } from 'helpers/parallax'
+import { trigger, removeEvent } from 'helpers/parallax'
 import { translateNode } from 'helpers/translateNode'
 
 import s from 'views/Projects.module.css'
@@ -57,11 +57,9 @@ const projectInfo = [
 
 const Projects = ({ history, darkMode, setDarkMode, toggleDarkMode, userDarkMode, ...props }) => {
   React.useEffect(() => {
-    const els = selectElements(g)
-    if(els) {
-      createEvent(els, g)
-    }
+    trigger()
     return () => {
+      removeEvent()
       if(!userDarkMode && darkMode) {
         setDarkMode(false)
       }

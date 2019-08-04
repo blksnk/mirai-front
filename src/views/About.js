@@ -1,5 +1,5 @@
 import React from 'react'
-import { selectElements, createEvent } from 'helpers/parallax.js'
+import { trigger, removeEvent } from 'helpers/parallax.js'
 
 import Img from 'uikit/Img'
 import PageSection from 'uikit/PageSection'
@@ -43,10 +43,8 @@ const About = () => {
     if(!progress) {
       displayProgress(true)
     }
-    const els = selectElements(g)
-    if(els) {
-      createEvent(els, g)
-    }
+    trigger()
+    return removeEvent
   }, [progress, displayProgress])
   return(
     <React.Fragment>
