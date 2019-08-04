@@ -7,10 +7,13 @@ const trigger = () => {
   }
 }
 
-const selectElements = g => {
-  const el = document.querySelectorAll(`.${g.pWrapper}`)
-  return el
+const removeEvent = () => {
+  document.querySelector('.App').onmousemove = null
 }
+
+const selectElements = g => document.querySelectorAll(`.${g.pWrapper}`)
+
+
 
 const createEvent = (els, g) => {
   document.querySelector('.App').onmousemove = e => {
@@ -72,5 +75,6 @@ const applyEffect = (el, coefX, coefY, g) => {
 export {
   selectElements,
   createEvent,
-  trigger
+  trigger,
+  removeEvent,
 }
