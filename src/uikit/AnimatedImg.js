@@ -3,18 +3,19 @@ import * as PIXI from 'pixi.js'
 import g from 'uikit/uikit.module.css'
 import displacementSource from 'assets/pixi/displacement_map_0.png'
 
-let count = .5
+let count = .25
 const intervalDelay = 30
-const initIntevalCount = 20
+const initIntevalCount = 30
 let intervalCount = initIntevalCount
 const padding = 200
 
-const createUid = name => `name${Math.floor(Math.random() * 100000000)}`
+const createUid = name => `${name}${Math.floor(Math.random() * 100000000)}`
 
 let displacementSprite
 let displacementFilter
 
-const setScene = (url, playground) => {
+const setScene = (url, playground, uid) => {
+
   let renderer = PIXI.autoDetectRenderer(playground.offsetWidth, playground.offsetHeight, {transparent:true})
   renderer.interactive = true
   renderer.autoResize = true
@@ -26,7 +27,7 @@ const setScene = (url, playground) => {
   let preview = new PIXI.Sprite(tp)
   preview.position.y = - padding / 2
   preview.position.x = - padding / 2
-  preview.height = playground.offsetHeight + padding
+  preview.width = playground.offsetWidth + padding
   preview.anchor.x = 0
   preview.interactive = true
 
@@ -47,7 +48,7 @@ const setScene = (url, playground) => {
 
   // setEvents(preview)
 
-  animate(renderer, stage, preview, tp, playground)
+  animate(renderer, stage, preview, tp, playground, uid)
 }
 
 const setEvents = preview => {
@@ -56,8 +57,6 @@ const setEvents = preview => {
     if(displacementSprite.scale.x > 0) {
       decrementScale()
     }
-    console.log(displacementSprite.scale)
-
   }
 
   preview.mouseover = (data) => {
@@ -65,7 +64,6 @@ const setEvents = preview => {
     if(displacementSprite.scale.x < 2) {
       incrementScale()
     }
-    console.log(displacementSprite.scale)
   }
 }
 
@@ -105,11 +103,11 @@ const FilterScale = n => {
   displacementSprite.scale.y = n
 }
 
-const animate = (renderer, stage, sprite, texture, playground) => {
-  requestAnimationFrame(() => animate(renderer, stage, sprite, texture, playground))
+const animate = (renderer, stage, sprite, texture, playground, uid) => {
+  requestAnimationFrame(() => animate(renderer, stage, sprite, texture, playground, uid))
   displacementSprite.x += count
   displacementSprite.y += count
-  preserveAspectRatio(sprite, texture, playground.offsetHeight)
+  preserveAspectRatio(sprite, texture, uid, playground)
   resizeRenderer(renderer, playground)
 
   stage.filters = [displacementFilter]
@@ -124,35 +122,61 @@ const resizeRenderer = (renderer, playground) => {
 
 }
 
-const preserveAspectRatio = (sprite, texture, windowHeight) => {
+const preserveAspectRatio = (sprite, texture, uid, playground) => {
   //get original w and h
+  const { offsetWidth, offsetHeight } = getPlaygroundDimensions(uid, playground)
   const { width, height } = texture
 
   //get aspect ratio
   const apspectRatio = width / height
 
   //get new w and h
-  const newHeight = windowHeight + padding
-  const newWidth = newHeight * apspectRatio
+  let newWidth = offsetWidth + padding
+  let newHeight = newWidth / apspectRatio
 
+  //ckeck for is height < window height
+  if(newHeight - padding < offsetHeight) {
+    newHeight = offsetHeight + padding
+    newWidth = newHeight * apspectRatio
+  }
   //set new width according to aspect ratio
-  if(sprite.width !== newWidth) {
-    sprite.width = newWidth
-  }
-  if(sprite.height !== newHeight) {
-    sprite.height = newHeight
-  }
+  sprite.width = newWidth
+  sprite.height = newHeight
 }
 
 
-const AnimatedImg = ({ src, className, alt, ...props }) => {
+
+const getPlaygroundDimensions = (uid, playground) => {
+  const hot = document.getElementById(uid)
+  let h, w
+  if(hot) {
+    const { offsetHeight, offsetWidth } = hot
+    h = offsetHeight
+    w = offsetWidth
+  } else {
+    const { offsetHeight, offsetWidth } = playground
+    h = offsetHeight
+    w = offsetWidth
+  }
+  return { offsetHeight: h, offsetWidth: w }
+}
+
+const uidSingle = createUid('px-render')
+
+const AnimatedImg = ({ src, className, index, alt, ...props }) => {
   const [state, setState] = React.useState(false)
-  const uid = createUid('px-render')
+  let uid
+  if(index) {
+    uid = `px-render${index}`
+  } else {
+    uid = uidSingle
+  }
+
   React.useEffect(() => {
     if(!state) {
       let playground = document.getElementById(uid)
-      setScene(src, playground)
-      setState(true)
+      setScene(src, playground, uid)
+      // setState(true)
     }
   }, [ state, setState, uid, src ] )
   return <div title={alt} className={`${g.animatedImgWrapper} ${className ? className : ''}`} {...props} id={uid}></div>
