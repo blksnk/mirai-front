@@ -8,8 +8,7 @@ import './App.css'
 import Projects from 'views/Projects'
 import About from 'views/About'
 import Contact from 'views/Contact'
-
-import PlayGround from 'uikit/PlayGround'
+import Presentation from 'views/Presentation'
 
 import LeftNav from 'uikit/LeftNav'
 import RightNav from 'uikit/RightNav'
@@ -24,10 +23,10 @@ const App = ({ darkMode }) => {
     <div className='middle'>
       <div className={`contentContainer ${darkMode ? 'dark' : 'light'}`}>
         <Switch>
-          <Route path='/projects' component={Projects}/>
+          <Route path='/work' component={Projects}/>
           <Route path='/about' component={About}/>
           <Route path='/contact' component={Contact}/>
-          <Route path='/playground' component={PlayGround}/>
+          <Route exact path='/' component={Presentation}/>
         </Switch> 
       </div>
 
