@@ -8,6 +8,7 @@ const {
   TITLE_SET,
   DARK_MODE_SET,
   DARK_MODE_TOGGLE,
+  UPDATE_FORM,
 } = types
 
 const initState = {
@@ -15,6 +16,13 @@ const initState = {
   pageIndicator: {
     current: 1,
     total: 4,
+  },
+  form: {
+    name: '',
+    subject: '',
+    message: '',
+    clientEmail: '',
+    phoneNumber: '',
   },
   darkMode: false,
   userDarkMode: false,
@@ -115,7 +123,12 @@ const rootReducer = (state = initState, action) => {
         darkMode: !state.darkMode
       }
     }
-
+    case UPDATE_FORM: {
+      return {
+        ...state,
+        form: action.form
+      }
+    }
     default: return state
   }
 }

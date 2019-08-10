@@ -8,6 +8,7 @@ const {
   TITLE_SET,
   DARK_MODE_SET,
   DARK_MODE_TOGGLE,
+  UPDATE_FORM,
 } = types
 
 const createActionBasic = (type) => ({
@@ -33,3 +34,4 @@ export const indicatorSetCurrent = (current) => createAction1Param(INDICATOR_SET
 export const pageTitleSet = (title) => createAction1Param(TITLE_SET, 'title', title)
 export const darkModeSet = (bool) => createAction1Param(DARK_MODE_SET, 'active', bool)
 export const darkModeToggle = () => createActionBasic(DARK_MODE_TOGGLE)
+export const updateForm = (form) => createAction1Param(UPDATE_FORM, 'form', form)
