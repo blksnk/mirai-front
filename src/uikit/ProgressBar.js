@@ -9,7 +9,7 @@ const ProgressBarHooks = ({ parent }) => {
 	React.useEffect(() => {
 		if(parentHTML) {
 			parentHTML.addEventListener('scroll', e => debounceScroll(e, progress, setProgress), {passive: true})
-			return () => parentHTML.removeEventListener('scroll', e => debounceScroll(e, progress, setProgress))
+			return () => parentHTML.removeEventListener('scroll', debounceScroll)
 		}
 	}, [parent, parentHTML, progress, setProgress])
 
