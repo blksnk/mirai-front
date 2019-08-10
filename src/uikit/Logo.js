@@ -45,7 +45,7 @@ const Horizontal = ({ className, onClick, title, color }) =>
 const triggerAction = (onClick, history) => {
   if(onClick) {
     onClick()
-  } else {
+  } else if(history) {
     history.push('/')
   }
 }
