@@ -18,6 +18,7 @@
   --dark-blue: #273644;
   --black: #212121;
   --dark-grey: #2B2B2B;
+  --light-grey: #8FA2B3;
 }
 
 /* hide scrollbar */
@@ -76,7 +77,7 @@ h1 {
   font-weight: 600;
   font-size: 105px;
   line-height: 110px;
-  color: var(--dark-blue);
+  color: var(--dark-grey);
   margin: 0;
   margin-bottom: 48px;
   transition-duration: .3s;
@@ -115,7 +116,6 @@ p {
   margin: 0;
   font-family: 'DM Sans';
   transition-duration: .3s;
-  /*font-family: 'Poppins';*/
   will-change: color;
 }
 
