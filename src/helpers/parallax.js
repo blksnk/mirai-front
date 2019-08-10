@@ -8,18 +8,20 @@ const trigger = () => {
 }
 
 const removeEvent = () => {
-  document.querySelector('.App').onmousemove = null
+  document.querySelector('.App').removeEventListener('mousemove', e => {
+    const els = selectElements(g)
+    const d = getViewportDimensions()
+    animate(e, d, els, g)
+  })
 }
 
 const selectElements = g => document.querySelectorAll(`.${g.pWrapper}`)
 
-
-
 const createEvent = (els, g) => {
-  document.querySelector('.App').onmousemove = e => {
+  document.querySelector('.App').addEventListener('mousemove', e => {
     const d = getViewportDimensions()
     animate(e, d, els, g)
-  }
+  }) 
 }
 
 const getViewportDimensions = () => {
@@ -60,8 +62,8 @@ const applyEffect = (el, coefX, coefY, g) => {
   const frame3 = el.querySelector(`.${g.frame3}`)
   const offsetXf2 = - basisX + coefX * 1.2
   const offsetYf2 = basisY - coefY * 1.2
-  const offsetXf3 = - 2 * basisX + coefX * 1.4
-  const offsetYf3 = 2 * basisY - coefY * 1.4
+  const offsetXf3 = - 2 * basisX + coefX * 2.4
+  const offsetYf3 = 2 * basisY - coefY * 2.4
   if(frame2) {
     frame2.style.right = `${offsetXf2}px`
     frame2.style.top = `calc(${offsetYf2}px - 100%)`
