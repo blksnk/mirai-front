@@ -278,12 +278,17 @@
   padding-top: 32px;
   height: calc(444px + 32px + 120px);
   padding-bottom: 120px;
+  cursor: move;
 }
 
 .sliderSlide {
   height: 312px;
   /*height: 100%;*/
   margin-right: 24px;
+}
+
+.sliderSlide:last-child {
+  padding-right: 48px;
 }
 
 .sliderImgContainer {
