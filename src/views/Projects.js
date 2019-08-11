@@ -6,7 +6,6 @@ import { trigger, removeEvent } from 'helpers/parallax'
 import { translateNode } from 'helpers/translateNode'
 
 import s from 'views/Projects.module.css'
-import g from 'uikit/uikit.module.css'
 
 import tower from 'assets/images/tower.jpg'
 import dark from 'assets/images/dark.jpg'
