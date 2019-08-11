@@ -10,5 +10,5 @@
 .progressbar-progress {
   background-color: var(--light-blue);
   width: 100%;
-  transition-duration: .3s;
+  transition-duration: .1s;
 }
