@@ -247,14 +247,14 @@ const DropDown = ({
       {children}
       <div className={g.selectWrapper}>     
         <select
+            tabIndex={tabIndex}
             className={g.contactFromDropDown}
-            style={{ width }}
+            style={{ width, backgroundImage: `url(${downArrow})`, }}
             name={name}
             required={required || false}
             onChange={e => changeState(name, e.target.value)}>
           {renderValues()}
         </select>
-        <img src={downArrow} alt='sadly not expandable' className={g.selectArrow} />
       </div>
       <span>{finite ? '.' : ''}</span>
     </label>

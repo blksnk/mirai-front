@@ -219,7 +219,14 @@
   border: none;
   position: relative;
   cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center right;
+  border-bottom: 3px solid var(--medium-dark-desat);
+}
 
+.contactFromDropDown:focus {
+  background-color: var(--extralight-blue);
+  border-color: var(--black);
 }
 
 .selectWrapper {
@@ -227,7 +234,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
-  border-bottom: 3px solid var(--medium-dark-desat);
   cursor: pointer;
 }
 
@@ -238,9 +244,13 @@
 
 .contactFromDropDown * {
   background-color: var(--extralight-blue);
+  font-weight: 600;
+  color: var(--dark-blue);
 }
 
-
+.contactFormDropDown *:hover {
+  background-color: red;
+}
 
 .textBox {
   display: block;
