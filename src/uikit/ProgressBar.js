@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
-import s from 'stylesheets/progress.css'
-import _ from 'underscore';
+import React from 'react'
+import 'stylesheets/progress.css'
+import _ from 'underscore'
 
 const ProgressBarHooks = ({ parent }) => {
 	const parentHTML = document.querySelector(`.${parent}`)
 	const [progress, setProgress] = React.useState(computePercentage(parentHTML))
 
 	React.useEffect(() => {
+		const scrollEvent = e => debounceScroll(e, progress, setProgress)
 		if(parentHTML) {
-			parentHTML.addEventListener('scroll', e => debounceScroll(e, progress, setProgress), {passive: true})
-			return () => parentHTML.removeEventListener('scroll', debounceScroll)
+			parentHTML.addEventListener('scroll', scrollEvent, {passive: true})
+			return () => parentHTML.removeEventListener('scroll', scrollEvent)
 		}
-	}, [parent, parentHTML, progress, setProgress])
+	}, [ parent, parentHTML, progress, setProgress ])
 
 	return (
 	  <div className='progressbar-container'>

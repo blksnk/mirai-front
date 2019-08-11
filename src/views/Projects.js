@@ -91,26 +91,20 @@ const ProjectView = ({ projects, darkMode, setDarkMode, applyDarkMode }) => {
   const subtitles = projects.map(item => item.subtitle)
   const numbers = projects.map((item, i) => formatNumber(i + 1))
 
+  const dbScroll = e => debounceScroll(e, scrolling, setScrolling, currentIndex, applyDarkMode, setCurrentIndex)
+  const dbResize = e => debounceResize(e, scrolling, currentIndex, applyDarkMode, setCurrentIndex)
+  const dbKeyPress = e => debounceKeyPress(e, scrolling, setScrolling, currentIndex, applyDarkMode, setCurrentIndex)
+
   React.useEffect(() => {
     const wrapper = document.querySelector(`.${s.wrapper}`)
-    window.addEventListener('resize', e => 
-      debounceResize(e, scrolling, currentIndex, applyDarkMode, setCurrentIndex)
-    )
-    document.addEventListener('keydown', e =>
-      debounceKeyPress(e, scrolling, setScrolling, currentIndex, applyDarkMode, setCurrentIndex)
-    )
-    wrapper.addEventListener('wheel', e => 
-      debounceScroll(e, scrolling, setScrolling, currentIndex, applyDarkMode, setCurrentIndex)
-    )
+    window.addEventListener('resize', dbResize)
+    document.addEventListener('keydown', dbKeyPress)
+    wrapper.addEventListener('wheel', dbScroll)
 
     return () => {
-      window.removeEventListener('resize', e => 
-        debounceResize(e, scrolling, currentIndex, applyDarkMode, setCurrentIndex)
-      )
-      document.removeEventListener('keydown', debounceKeyPress)
-      wrapper.removeEventListener('wheel', e => 
-        debounceScroll(e, scrolling, setScrolling, currentIndex, applyDarkMode, setCurrentIndex)
-      )
+      window.removeEventListener('resize', dbResize)
+      document.removeEventListener('keydown', dbKeyPress)
+      wrapper.removeEventListener('wheel', dbScroll)
     }
   })
 
