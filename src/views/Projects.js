@@ -126,6 +126,33 @@ const ProjectView = ({ projects, darkMode, setDarkMode, applyDarkMode }) => {
   )
 }
 
+const scrollOnKeyPress = (e, scrolling, setScrolling, currentIndex, applyDarkMode, setCurrentIndex) => {
+  const { code } = e
+  let scrollToIndex = 'empty'
+  switch(code) {
+    case 'ArrowLeft':
+      scrollToIndex = currentIndex - 1
+      break
+    case 'ArrowRight':
+      scrollToIndex = currentIndex + 1
+      break
+    case 'ArrowUp': 
+      scrollToIndex = currentIndex - 1
+      break
+    case 'ArrowDown':
+      scrollToIndex = currentIndex + 1
+      break
+
+    default:
+      scrollToIndex = 'empty'
+  }
+
+  if(!scrolling && scrollToIndex !== 'empty') {
+    setScrolling(true)
+    scroll(scrollToIndex, applyDarkMode, setCurrentIndex)
+    setTimeout(() => setScrolling(false), 300)
+  }
+}
 const ThumbScroller = ({ thumbs }) => 
 <div className={s.thumbScroller}>
   {thumbs.map((src, i) => (
