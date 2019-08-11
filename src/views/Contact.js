@@ -25,10 +25,21 @@ const subjectValues = [
   ['random', 'something else'],
 ]
 
-const Contact = ({ history, ...props }) => {
-  const [state, setState] = React.useState(initState)
+const retrieveForm = (setState, state, form) => {
+  if(state !== form) {
+    setState(form)
+  }
+}
 
-  const [sent, send] = React.useState(false)
+const updateFormToReducer = (dispatch, state, form) => {
+  if(state !== form) {
+    dispatch(updateForm(state))
+  }
+}
+
+const Contact = ({ history, form, dispatch, ...props }) => {
+  const [state, setState] = React.useState(initState)
+  const [load, setLoaded] = React.useState(false)
 
   const changeState = (f, v) => {
     setState({
@@ -38,11 +49,22 @@ const Contact = ({ history, ...props }) => {
   }
 
   React.useEffect(() => {
-    trigger()
-    return removeEvent
-  })
+    if(!load) {
+      setLoaded(true)
+      retrieveForm(setState, state, form)
+      trigger()
+    }
+
+    return () => {
+      removeEvent()
+      updateFormToReducer(dispatch, state, form)
+    }
+  }, [ load, setLoaded, dispatch, form, state ])
   return (
     <React.Fragment>
+      {load
+        ? <ProgressBar parent='contentContainer'/>
+        : null}
       <div className='titleSection'>
         <h1 className={s.s1t}>Let's work<br/>together</h1>
         <p className={s.s1p}>Veniam incididunt eiusmod culpa dolore adipisicing fugiat et aliqua voluptate occaecat pariatur laboris dolor irure eiusmod id aliqua.</p>
@@ -120,7 +142,7 @@ const Contact = ({ history, ...props }) => {
           finite
         >Or give me a call at</FormInput>
 
-        <Button title='submit' className={s.submit} onClick={() => triggerSubmit()}>Send it</Button>
+        <Button title='submit' className={s.submit} onClick={() => triggerSubmit()}>Say Hello</Button>
       </form>
 
     </React.Fragment>
@@ -239,4 +261,4 @@ const DropDown = ({
   )
 }
 
-export default Contact
+export default connect( ({ form }) => ({ form }) )(Contact)
