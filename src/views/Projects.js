@@ -179,8 +179,8 @@ const scrollOnResize = (e, scrolling, currentIndex, applyDarkMode, setCurrentInd
   }
 } 
 
-const debounceScroll = _.debounce(scrollOnEvent, 300, false)
-const debounceKeyPress = _.debounce(scrollOnKeyPress, 300, false)
+const debounceScroll = _.debounce(scrollOnEvent, 300, true)
+const debounceKeyPress = _.debounce(scrollOnKeyPress, 300, true)
 const debounceResize = _.debounce(scrollOnResize, 150, false)
 
 const ThumbScroller = ({ thumbs }) => 
