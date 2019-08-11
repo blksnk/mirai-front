@@ -1,0 +1,17 @@
+.illuWrapper {
+  grid-column: 2 / 10;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoMask {
+  transform: scale(8);
+  fill:  var(--dark-blue);
+}
+
+.img {
+  height: 100%;
+  
+}
