@@ -128,7 +128,7 @@ const Skills = ({ className }) => <table className={className ? className : ''}>
     <tr>
       <td>React</td>
       <td>React Native</td>
-      <td>VueJS</td>     
+      <td>Redux</td>     
     </tr>
     <tr>
       <td>MongoDB</td>
