@@ -82,12 +82,35 @@ const Projects = ({ history, darkMode, setDarkMode, toggleDarkMode, userDarkMode
 
 const ProjectView = ({ projects, darkMode, setDarkMode, applyDarkMode }) => {
   const [currentIndex, setCurrentIndex] = React.useState(0)
+  const [scrolling, setScrolling] = React.useState(false)
 
   const titles = projects.map(item => item.title)
   const thumbs = projects.map(item => item.thumb)
   const subtitles = projects.map(item => item.subtitle)
   const numbers = projects.map((item, i) => formatNumber(i + 1))
 
+  React.useEffect(() => {
+    const wrapper = document.querySelector(`.${s.wrapper}`)
+    window.addEventListener('resize', e => 
+      debounceResize(e, scrolling, currentIndex, applyDarkMode, setCurrentIndex)
+    )
+    document.addEventListener('keydown', e =>
+      debounceKeyPress(e, scrolling, setScrolling, currentIndex, applyDarkMode, setCurrentIndex)
+    )
+    wrapper.addEventListener('wheel', e => 
+      debounceScroll(e, scrolling, setScrolling, currentIndex, applyDarkMode, setCurrentIndex)
+    )
+
+    return () => {
+      window.removeEventListener('resize', e => 
+        debounceResize(e, scrolling, currentIndex, applyDarkMode, setCurrentIndex)
+      )
+      document.removeEventListener('keydown', debounceKeyPress)
+      wrapper.removeEventListener('wheel', e => 
+        debounceScroll(e, scrolling, setScrolling, currentIndex, applyDarkMode, setCurrentIndex)
+      )
+    }
+  })
   return (
     <div className={s.wrapper}>
       <ThumbScroller {...{ thumbs }}/>
