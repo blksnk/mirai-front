@@ -107,7 +107,7 @@ const About = ({ history }) => {
 
       <PageSection className={s.s} current={4}/>
 
-      <h2 className={s.s4t}>Can you create something in X language ?</h2>
+      <h2 className={s.s4t}>Are you proficient in X language ?</h2>
       <p className={s.s4p}>Nostrud ullamco in id fugiat aliqua eiusmod dolore nulla id pariatur ut do dolor enim culpa consequat.</p>
 
       <Skills className={s.s4sk}/>
