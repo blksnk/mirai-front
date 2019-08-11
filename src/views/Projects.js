@@ -4,7 +4,7 @@ import _ from 'underscore';
 
 import { darkModeSet, darkModeToggle } from 'store/actions/actions'
 import { formatNumber } from 'helpers/formatNumber'
-import { trigger, removeEvent } from 'helpers/parallax'
+import { createEvent, removeEvent } from 'helpers/parallax'
 import { translateNode } from 'helpers/translateNode'
 
 import s from 'views/Projects.module.css'
@@ -64,7 +64,7 @@ const projectInfo = [
 
 const Projects = ({ history, darkMode, setDarkMode, toggleDarkMode, userDarkMode, ...props }) => {
   React.useEffect(() => {
-    trigger()
+    createEvent()
     return () => {
       removeEvent()
       if(!userDarkMode && darkMode) {

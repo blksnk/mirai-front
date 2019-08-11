@@ -1,5 +1,5 @@
 import React from 'react'
-import { trigger, removeEvent } from 'helpers/parallax.js'
+import { createEvent, removeEvent } from 'helpers/parallax.js'
 
 import Img from 'uikit/Img'
 import PageSection from 'uikit/PageSection'
@@ -63,7 +63,7 @@ const About = ({ history }) => {
     if(!progress) {
       displayProgress(true)
     }
-    trigger()
+    createEvent()
     return removeEvent
   }, [progress, displayProgress])
   return(

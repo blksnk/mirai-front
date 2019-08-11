@@ -1,15 +1,15 @@
 import React from 'react'
-import _ from 'underscore'
-import { trigger, removeEvent } from 'helpers/parallax.js'
 import { connect } from 'react-redux'
 import { updateForm } from 'store/actions/actions'
+import { createEvent, removeEvent } from 'helpers/parallax.js'
 
 import Button from 'uikit/Button'
 import ProgressBar from 'uikit/ProgressBar'
-import downArrow from 'assets/icons/ios-arrow-down.svg'
 
 import s from './Contact.module.css'
 import g from 'uikit/uikit.module.css'
+
+import downArrow from 'assets/icons/ios-arrow-down.svg'
 
 const initState = {
   name: '',
@@ -31,7 +31,7 @@ const retrieveForm = (setState, state, form) => {
   }
 }
 
-const updateFormToReducer = (dispatch, state, form) => {
+const uploadFormToReducer = (dispatch, state, form) => {
   if(state !== form) {
     dispatch(updateForm(state))
   }
@@ -49,15 +49,15 @@ const Contact = ({ history, form, dispatch, ...props }) => {
   }
 
   React.useEffect(() => {
+    createEvent()
     if(!load) {
-      setLoaded(true)
       retrieveForm(setState, state, form)
-      trigger()
+      setLoaded(true)
     }
 
     return () => {
       removeEvent()
-      updateFormToReducer(dispatch, state, form)
+      uploadFormToReducer(dispatch, state, form)
     }
   }, [ load, setLoaded, dispatch, form, state ])
   return (
