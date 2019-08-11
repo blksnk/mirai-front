@@ -1,6 +1,6 @@
 /*fonts*/
-@import url('https://fonts.googleapis.com/css?family=Oswald:600,700|DM+Sans:400,400i,500,500i,700,700i|Poppins:400,500,600,600i,700,700i,800,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Oswald:600,700|DM+Sans:400,400i,500,500i,700,700i&display=swap');
+@import url("https://use.typekit.net/uqj4fml.css");
 * {
   font-family: 'Poppins', sans-serif;
 }
