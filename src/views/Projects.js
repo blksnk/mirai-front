@@ -153,6 +153,23 @@ const scrollOnKeyPress = (e, scrolling, setScrolling, currentIndex, applyDarkMod
     setTimeout(() => setScrolling(false), 300)
   }
 }
+const scrollOnEvent = (e, scrolling, setScrolling, currentIndex, applyDarkMode, setCurrentIndex) => {
+  e.preventDefault()
+  //normalize directions
+  const delta = e.deltaX !== 0 ? e.deltaX : e.deltaY !== 0 ? e.deltaY : 0
+  //scroll according to delta
+  let scrollToIndex = 0
+  if(!scrolling && delta) {
+    setScrolling(true)
+    if(delta > 0) {
+      scrollToIndex = currentIndex + 1
+    } else {
+      scrollToIndex = currentIndex - 1
+    }
+    scroll(scrollToIndex, applyDarkMode, setCurrentIndex)
+    setTimeout(() => setScrolling(false), 300)
+  }
+}
 const ThumbScroller = ({ thumbs }) => 
 <div className={s.thumbScroller}>
   {thumbs.map((src, i) => (
