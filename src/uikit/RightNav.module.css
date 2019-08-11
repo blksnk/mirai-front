@@ -46,11 +46,15 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  background-color: var(--medium-blue-desat);
+  background-color: var(--dark-blue);
   height: 100%;
   transition-duration: .4s;
   z-index: 1;
   pointer-events: none;
+}
+
+.right .menuBtn rect {
+  fill: var(--extralight-blue);
 }
 
 .right div {
@@ -112,13 +116,13 @@
 }
 
 .links span {
-  color: var(--dark-blue);
-  font-size: 146x;
+  color: var(--extralight-blue);
+  font-size: 16px;
   height: 24px;
 }
 
 .socials span {
-  color: var(--extralight-blue);
+  color: var(--medium-blue-desat);
   font-size: 16px;
   font-weight: 600;
 }
