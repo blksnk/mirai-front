@@ -1,11 +1,15 @@
 import React from 'react'
-import PageSection from 'uikit/PageSection'
+import _ from 'underscore'
+import { trigger, removeEvent } from 'helpers/parallax.js'
+import { connect } from 'react-redux'
+import { updateForm } from 'store/actions/actions'
+
 import Button from 'uikit/Button'
+import ProgressBar from 'uikit/ProgressBar'
 import downArrow from 'assets/icons/ios-arrow-down.svg'
 
 import s from './Contact.module.css'
 import g from 'uikit/uikit.module.css'
-import { trigger, removeEvent } from 'helpers/parallax.js'
 
 const initState = {
   name: '',
