@@ -3,10 +3,10 @@ import { trigger, removeEvent } from 'helpers/parallax.js'
 
 import Img from 'uikit/Img'
 import PageSection from 'uikit/PageSection'
+import Button from 'uikit/Button'
 import { InfoSlider } from 'uikit/Slider'
 import ProgressBar from 'uikit/ProgressBar'
 
-import g from 'uikit/uikit.module.css'
 import s from './About.module.css'
 
 import light from 'assets/images/light.jpg'
