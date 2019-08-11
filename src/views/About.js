@@ -72,7 +72,7 @@ const About = ({ history }) => {
         ? <ProgressBar parent='contentContainer'/>
         : null}
       <div className='titleSection'>
-        <PageSection className={s.s} first total={3}/>
+        <PageSection className={s.s} first total={4}/>
         <h1>I create<br/>
           and build<br/>
           Websites.
@@ -104,8 +104,43 @@ const About = ({ history }) => {
       </p>
 
       <InfoSlider className={s.s3sl} array={sliderInfo} numbers/>
+
+      <PageSection className={s.s} current={4}/>
+
+      <h2 className={s.s4t}>Can you create something in X language ?</h2>
+      <p className={s.s4p}>Nostrud ullamco in id fugiat aliqua eiusmod dolore nulla id pariatur ut do dolor enim culpa consequat.</p>
+
+      <Skills className={s.s4sk}/>
+      <div className='sectionSeparator'></div>
+
+
     </React.Fragment>
   )
 }
+
+const Skills = ({ className }) => <table className={className ? className : ''}>
+  <tbody>
+    <tr>
+      <td>JavaScript ES6</td>
+      <td>HTML 5</td>
+      <td>CSS 3</td>
+    </tr>
+    <tr>
+      <td>React</td>
+      <td>React Native</td>
+      <td>VueJS</td>     
+    </tr>
+    <tr>
+      <td>MongoDB</td>
+      <td>PostgreSQL</td>
+      <td>Firebase</td>
+    </tr>
+    <tr>
+      <td>NodeJS</td>
+      <td>Express</td>
+      <td>AngularJS</td>
+    </tr>
+  </tbody>
+</table>
 
 export default About
