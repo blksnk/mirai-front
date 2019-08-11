@@ -28,30 +28,35 @@ const projectInfo = [
     thumb: tower,
     subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
     color: 'light',
+    url: 'www.gooogle.com',
   },
   {
     title: <span>a calming <br/> <TextParallax>breeze...</TextParallax></span>,
     thumb: light,
     subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
     color: 'light',
+    url: 'www.gooogle.com',
   },
   {
     title: <span>reaching a <br/> <TextParallax>dark</TextParallax> place</span>,
     thumb: dark,
     subtitle: 'Culpa laboris dolore ex ex ut laborum pariatur in reprehenderit excepteur ut deserunt in adipisicing non eu sit in in qui sed.',
     color: 'dark',
+    url: 'www.gooogle.com',
   },
   {
     title: <span>Sweet <br/><TextParallax>sunrise</TextParallax></span>,
     thumb: home2,
     subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
     color: 'dark',
+    url: 'www.gooogle.com',
   },
   {
     title: <span>low contrast<br/> <TextParallax>goodness</TextParallax></span>,
     thumb: light,
     subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
     color: 'light',
+    url: 'www.gooogle.com',
   },
 ]
 
