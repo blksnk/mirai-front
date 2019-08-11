@@ -111,14 +111,17 @@ const ProjectView = ({ projects, darkMode, setDarkMode, applyDarkMode }) => {
       )
     }
   })
+
   return (
     <div className={s.wrapper}>
       <ThumbScroller {...{ thumbs }}/>
       <NumberScroller {...{ numbers }}/>
       <TextScroller {...{ titles, subtitles }}/>
 
-      <button onClick={() => scroll(currentIndex - 1, applyDarkMode, setCurrentIndex)} className={`${s.prev} projectPrevBtn`}>Previous</button>
-      <Button onClick={() => scroll(currentIndex + 1, applyDarkMode, setCurrentIndex)} className={s.next}>next project</Button>
+      <Button onClick={() => console.log(projects[currentIndex].title)} className={s.visit}>see for yourself</Button>
+      
+      <button onClick={() => scroll(currentIndex - 1, applyDarkMode, setCurrentIndex)} className={` ${s.scroll} ${s.prev} projectPrevBtn`}>Previous</button>
+      <button onClick={() => scroll(currentIndex + 1, applyDarkMode, setCurrentIndex)} className={`${s.scroll} ${s.next} projectPrevBtn`}>Next project</button>
     </div>
   )
 }
