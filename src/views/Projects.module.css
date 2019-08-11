@@ -73,7 +73,7 @@
 
 .textScroller {
   grid-column: 5 / 12;
-  grid-row: 3 / 6 ;
+  grid-row: 3 / 7 ;
   z-index: 2;
   overflow: hidden;
   display: flex;
@@ -90,7 +90,7 @@
   /* margin-right: 100%; */
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
 }
 
 .titleSection {
@@ -116,6 +116,8 @@
 
 .subtitle {
   grid-column: 2 / 6;
+  grid-row: 2 / 5;
+  align-self: start;
   padding-left: 24px;
   /* grid-row: 3 / 4; */
   color: var(--medium-dark-desat);
