@@ -34,10 +34,30 @@ const sliderInfo = [
     title: 'city',
     p: 'Ut elit cillum officia aliquip sunt dolore adipisicing cupidatat aute.',
     color: 'light',
+  }, {
+    img: light,
+    alt: 'test alt light',
+    onClick: () => console.log('light'),
+    title: 'light',
+    p: 'Lorem ipsum labore minim deserunt mollit sint minim eiusmod laborum do nulla proident irure incididunt ullamco amet cupidatat aute exercitation consectetur in labore laborum ut enim labore ut esse incididunt duis.',
+    color: 'light',
+  }, {
+    img: dark,
+    alt: 'test alt dark',
+    title: 'dark',
+    p: 'Ut elit cillum officia aliquip sunt dolore adipisicing cupidatat aute.',
+    color: 'dark',
+  }, {
+    img: city,
+    alt: 'test alt city',
+    onClick: () => console.log('city'),
+    title: 'city',
+    p: 'Ut elit cillum officia aliquip sunt dolore adipisicing cupidatat aute.',
+    color: 'light',
   }
 ]
 
-const About = () => {
+const About = ({ history }) => {
   const [progress, displayProgress] = React.useState(false)
   React.useEffect(() => {
     if(!progress) {
