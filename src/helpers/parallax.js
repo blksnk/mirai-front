@@ -1,27 +1,22 @@
 import g from 'uikit/uikit.module.css'
 
-const trigger = () => {
+const initEvent = e => {
   const els = selectElements(g)
+  console.log(els)
+  const d = getViewportDimensions()
   if(els) {
-    createEvent(els, g)
+    animate(e, d, els, g)  
   }
-}
-
-const removeEvent = () => {
-  document.querySelector('.App').removeEventListener('mousemove', e => {
-    const els = selectElements(g)
-    const d = getViewportDimensions()
-    animate(e, d, els, g)
-  })
 }
 
 const selectElements = g => document.querySelectorAll(`.${g.pWrapper}`)
 
-const createEvent = (els, g) => {
-  document.querySelector('.App').addEventListener('mousemove', e => {
-    const d = getViewportDimensions()
-    animate(e, d, els, g)
-  }) 
+const createEvent = () => {
+  document.querySelector('.App').addEventListener('mousemove', initEvent)
+}
+
+const removeEvent = () => {
+  document.querySelector('.App').removeEventListener('mousemove', initEvent)
 }
 
 const getViewportDimensions = () => {
@@ -77,6 +72,5 @@ const applyEffect = (el, coefX, coefY, g) => {
 export {
   selectElements,
   createEvent,
-  trigger,
   removeEvent,
 }
