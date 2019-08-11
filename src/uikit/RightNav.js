@@ -114,7 +114,6 @@ const redirectTo = (e, href, h, external) => {
 
 const scrollToTop = () => {
   const el = document.querySelector('.contentContainer')
-  console.log(el)
   el.scrollTop = 0;
 }
 
