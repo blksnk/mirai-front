@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import _ from 'underscore';
+
 import { darkModeSet, darkModeToggle } from 'store/actions/actions'
 import { formatNumber } from 'helpers/formatNumber'
 import { trigger, removeEvent } from 'helpers/parallax'
@@ -153,6 +155,7 @@ const scrollOnKeyPress = (e, scrolling, setScrolling, currentIndex, applyDarkMod
     setTimeout(() => setScrolling(false), 300)
   }
 }
+
 const scrollOnEvent = (e, scrolling, setScrolling, currentIndex, applyDarkMode, setCurrentIndex) => {
   e.preventDefault()
   //normalize directions
@@ -181,11 +184,16 @@ const scrollOnResize = (e, scrolling, currentIndex, applyDarkMode, setCurrentInd
     translateNode(number, 100, true)
   }
 } 
+
+const debounceScroll = _.debounce(scrollOnEvent, 300, false)
+const debounceKeyPress = _.debounce(scrollOnKeyPress, 300, false)
+const debounceResize = _.debounce(scrollOnResize, 150, false)
+
 const ThumbScroller = ({ thumbs }) => 
 <div className={s.thumbScroller}>
   {thumbs.map((src, i) => (
     <div className={s.thumbWrapper} key={`projectThumb${i}`} id={`projectThumb${i}`}>
-      <AnimatedImg className={s.thumb} src={src} alt=''/>
+      <AnimatedImg className={s.thumb} index={i} src={src} alt=''/>
     </div>
   ))}
 </div>
@@ -215,7 +223,7 @@ const scroll = (i, applyDarkMode, setCurrentIndex) => {
   const thumb = document.getElementById(`projectThumb${i}`)
   const number = document.getElementById(`projectNumber${i}`)
   
-  if(i >= 0 && i <= projectInfo.length - 1) {
+  if(i >= 0 && i <= projectInfo.length - 1 && text && thumb && number) {
     translateNode(text, 300)
     translateNode(thumb, 300)
     translateNode(number, 300, true)
