@@ -48,14 +48,14 @@ const RightNav = ({ history }) => {
 const Links = ({ h, retract }) => 
   <div className={s.links}>
     <LinkIcon retract={retract} icon={about} href='/about' title='about' h={h}/>
-    <LinkIcon retract={retract} icon={projects} href='/projects' title='projects' h={h}/>
+    <LinkIcon retract={retract} icon={projects} href='/work' title='work' h={h}/>
     <LinkIcon retract={retract} icon={contact} href='/contact' title='contact' h={h}/>
   </div>
 
 const LinkLabels = ({ h, retract }) => 
   <div className={`${s.links} ${s.linkLabel}`}>
     <LinkIcon retract={retract} href='/about' title='about' h={h} label='about'/>
-    <LinkIcon retract={retract} href='/projects' title='projects' h={h} label='projects'/>
+    <LinkIcon retract={retract} href='/work' title='work' h={h} label='work'/>
     <LinkIcon retract={retract} href='/contact' title='contact' h={h} label='contact'/>
   </div>
 
