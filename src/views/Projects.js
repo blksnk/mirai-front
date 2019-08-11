@@ -170,6 +170,17 @@ const scrollOnEvent = (e, scrolling, setScrolling, currentIndex, applyDarkMode, 
     setTimeout(() => setScrolling(false), 300)
   }
 }
+
+const scrollOnResize = (e, scrolling, currentIndex, applyDarkMode, setCurrentIndex) => {
+  if(!scrolling) {
+    const text = document.getElementById(`projectText${currentIndex}`)
+    const thumb = document.getElementById(`projectThumb${currentIndex}`)
+    const number = document.getElementById(`projectNumber${currentIndex}`)
+    translateNode(text, 100)
+    translateNode(thumb, 100)
+    translateNode(number, 100, true)
+  }
+} 
 const ThumbScroller = ({ thumbs }) => 
 <div className={s.thumbScroller}>
   {thumbs.map((src, i) => (
