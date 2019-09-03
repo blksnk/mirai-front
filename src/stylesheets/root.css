@@ -81,9 +81,9 @@ h1 {
   margin: 0;
   margin-bottom: 48px;
   transition-duration: .3s;
-  will-change: color;
-  will-change: -webkit-text-stroke;
-  will-change: -webkit-text-fill-color;
+  /* will-change: color; */
+  /* will-change: -webkit-text-stroke; */
+  /* will-change: -webkit-text-fill-color; */
 }
 
 h2 {
@@ -94,7 +94,7 @@ h2 {
   margin: 0;
   margin-bottom: 36px;
   transition-duration: .3s;
-  will-change: color;
+  /* will-change: color; */
 }
 
 h3 {
@@ -105,7 +105,7 @@ h3 {
   margin: 0;
   margin-bottom: 12px;
   transition-duration: .3s;
-  will-change: color;
+  /* will-change: color; */
 }
 
 p {
