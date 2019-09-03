@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@pixi/core": "^5.1.0",
+    "pixi-tween": "^0.2.0",
     "pixi.js": "4.5.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
