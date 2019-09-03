@@ -119,7 +119,6 @@ const resizeRenderer = (renderer, playground) => {
   if(renderer.height !== playground.offsetHeight || renderer.width !== playground.offsetWidth) {
     renderer.resize(playground.offsetWidth, playground.offsetHeight)
   }
-
 }
 
 const preserveAspectRatio = (sprite, texture, uid, playground) => {
@@ -134,7 +133,7 @@ const preserveAspectRatio = (sprite, texture, uid, playground) => {
   let newWidth = offsetWidth + padding
   let newHeight = newWidth / apspectRatio
 
-  //ckeck for is height < window height
+  //ckeck if height < window height
   if(newHeight - padding < offsetHeight) {
     newHeight = offsetHeight + padding
     newWidth = newHeight * apspectRatio
@@ -176,7 +175,7 @@ const AnimatedImg = ({ src, className, index, alt, ...props }) => {
     if(!state) {
       let playground = document.getElementById(uid)
       setScene(src, playground, uid)
-      // setState(true)
+      setState(true)
     }
   }, [ state, setState, uid, src ] )
   return <div title={alt} className={`${g.animatedImgWrapper} ${className ? className : ''}`} {...props} id={uid}></div>
