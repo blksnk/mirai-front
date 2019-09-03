@@ -4,7 +4,7 @@ export const translateNode = (el, duration, vertical) => {
   const start = vertical ? parent.scrollTop : parent.scrollLeft
   const change = to - start
   let currentTime = 0
-  let increment = 15
+  let increment = 8
         
     const animateScroll = function(timestamp){        
       currentTime += increment;
@@ -27,7 +27,7 @@ export const translateNode = (el, duration, vertical) => {
 //d = duration
 Math.easeInOutQuad = function (t, b, c, d) {
   t /= d/2;
-  if (t < 1) return c/2*t*t + b;
-  t--;
-  return -c/2 * (t*(t-2) - 1) + b;
+  if (t < 1) return c/2*t*t + b
+  t--
+  return -c/2 * (t*(t-2) - 1) + b
 };
