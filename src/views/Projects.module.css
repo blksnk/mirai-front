@@ -106,6 +106,17 @@
   white-space: nowrap;
 }
 
+.title div {
+  /* margin-bottom: auto; */
+  height: 146px;
+}
+
+.title span {
+  height: 110px;
+  max-height: 110px;
+  line-height: 110px;
+}
+
 .title::first-letter {
   text-transform: capitalize;
 }

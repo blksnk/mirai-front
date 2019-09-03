@@ -17,6 +17,7 @@ import light from 'assets/images/light.jpg'
 import TextParallax from 'uikit/TextParallax'
 import Button from 'uikit/Button'
 import AnimatedImg from 'uikit/AnimatedImg'
+import ProjectThumbs, { translate } from 'components/ProjectThumbs'
 
 const mapStateToProps = ({ darkMode, userDarkMode }) => ({ darkMode, userDarkMode })
 const mapDispatchToProps = dispatch => ({
@@ -24,37 +25,39 @@ const mapDispatchToProps = dispatch => ({
   toggleDarkMode: () => dispatch(darkModeToggle()),
 })
 
+const createTitle = (a, b, c) => <span> {a} <br/> <span className={s.secondRow}><TextParallax> {b} </TextParallax> {c ? c : ''} </span></span>
+
 const projectInfo = [
   {
-    title: <span>enjoying the <br/> <TextParallax>cityscape</TextParallax></span>,
+    title:  createTitle('enjoying the', 'cityscape'),
     thumb: tower,
     subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
     color: 'light',
     url: 'www.gooogle.com',
   },
   {
-    title: <span>a calming <br/> <TextParallax>breeze...</TextParallax></span>,
+    title: createTitle('a calming', 'breeze...'),
     thumb: light,
     subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
     color: 'light',
     url: 'www.gooogle.com',
   },
   {
-    title: <span>reaching a <br/> <TextParallax>dark</TextParallax> place</span>,
+    title: createTitle('reaching a', 'dark', 'place'),
     thumb: dark,
     subtitle: 'Culpa laboris dolore ex ex ut laborum pariatur in reprehenderit excepteur ut deserunt in adipisicing non eu sit in in qui sed.',
     color: 'dark',
     url: 'www.gooogle.com',
   },
   {
-    title: <span>Sweet <br/><TextParallax>sunrise</TextParallax></span>,
+    title: createTitle('sweet', 'sunrise'),
     thumb: home2,
     subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
     color: 'dark',
     url: 'www.gooogle.com',
   },
   {
-    title: <span>low contrast<br/> <TextParallax>goodness</TextParallax></span>,
+    title: createTitle('low contrast', 'goodness'),
     thumb: light,
     subtitle: 'Quis excepteur magna magna ut enim in ad mollit occaecat fugiat ut pariatur ex ex est velit.',
     color: 'light',
@@ -110,14 +113,15 @@ const ProjectView = ({ projects, darkMode, setDarkMode, applyDarkMode }) => {
 
   return (
     <div className={s.wrapper}>
-      <ThumbScroller {...{ thumbs }}/>
+      {/*<ThumbScroller {...{ thumbs }}/>*/}
+      <Thumbs {...{ thumbs }}/>
       <NumberScroller {...{ numbers }}/>
       <TextScroller {...{ titles, subtitles }}/>
 
       <Button onClick={() => console.log(projects[currentIndex].title)} className={s.visit}>see for yourself</Button>
       
-      <button onClick={() => scroll(currentIndex - 1, applyDarkMode, setCurrentIndex)} className={` ${s.scroll} ${s.prev} projectPrevBtn`}>Previous</button>
-      <button onClick={() => scroll(currentIndex + 1, applyDarkMode, setCurrentIndex)} className={`${s.scroll} ${s.next} projectPrevBtn`}>Next project</button>
+      <button onClick={() => scroll(currentIndex, currentIndex - 1, applyDarkMode, setCurrentIndex)} className={` ${s.scroll} ${s.prev} projectPrevBtn`}>Previous</button>
+      <button onClick={() => scroll(currentIndex, currentIndex + 1, applyDarkMode, setCurrentIndex)} className={`${s.scroll} ${s.next} projectPrevBtn`}>Next project</button>
     </div>
   )
 }
@@ -145,7 +149,7 @@ const scrollOnKeyPress = (e, scrolling, setScrolling, currentIndex, applyDarkMod
 
   if(!scrolling && scrollToIndex !== 'empty') {
     setScrolling(true)
-    scroll(scrollToIndex, applyDarkMode, setCurrentIndex)
+    scroll(currentIndex, scrollToIndex, applyDarkMode, setCurrentIndex)
     setTimeout(() => setScrolling(false), 300)
   }
 }
@@ -163,7 +167,7 @@ const scrollOnEvent = (e, scrolling, setScrolling, currentIndex, applyDarkMode, 
     } else {
       scrollToIndex = currentIndex - 1
     }
-    scroll(scrollToIndex, applyDarkMode, setCurrentIndex)
+    scroll(currentIndex, scrollToIndex, applyDarkMode, setCurrentIndex)
     setTimeout(() => setScrolling(false), 300)
   }
 }
@@ -171,10 +175,8 @@ const scrollOnEvent = (e, scrolling, setScrolling, currentIndex, applyDarkMode, 
 const scrollOnResize = (e, scrolling, currentIndex, applyDarkMode, setCurrentIndex) => {
   if(!scrolling) {
     const text = document.getElementById(`projectText${currentIndex}`)
-    const thumb = document.getElementById(`projectThumb${currentIndex}`)
     const number = document.getElementById(`projectNumber${currentIndex}`)
     translateNode(text, 100)
-    translateNode(thumb, 100)
     translateNode(number, 100, true)
   }
 } 
@@ -190,6 +192,13 @@ const ThumbScroller = ({ thumbs }) =>
       <AnimatedImg className={s.thumb} index={i} src={src} alt=''/>
     </div>
   ))}
+</div>
+
+const Thumbs = ({ thumbs }) => 
+<div className={s.thumbScroller}>
+    <div className={s.thumbWrapper} key={`projectThumb${0}`} id={`projectThumb${0}`}>
+      <ProjectThumbs className={s.thumb} urls={thumbs} alt='projectthumbs'/>
+    </div>
 </div>
 
 const TextScroller = ({ titles, subtitles }) => 
@@ -212,14 +221,13 @@ const NumberScroller = ({ numbers }) =>
   )}
 </div>
 
-const scroll = (i, applyDarkMode, setCurrentIndex) => {
+const scroll = (currentIndex, i, applyDarkMode, setCurrentIndex) => {
   const text = document.getElementById(`projectText${i}`)
-  const thumb = document.getElementById(`projectThumb${i}`)
   const number = document.getElementById(`projectNumber${i}`)
   
-  if(i >= 0 && i <= projectInfo.length - 1 && text && thumb && number) {
+  if(i >= 0 && i <= projectInfo.length - 1 && text && number) {
     translateNode(text, 300)
-    translateNode(thumb, 300)
+    translate(currentIndex, i, 600)
     translateNode(number, 300, true)
     setTimeout(() => applyDarkMode(i), 300)
     setCurrentIndex(i)
