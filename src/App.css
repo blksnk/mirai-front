@@ -43,13 +43,13 @@
   height: 100%;
   width: 100%;
   transition-duration: .3s;
-  will-change: background-color;
+  /* will-change: background-color; */
 }
 
 .gridLine {
   border-right: 2px solid var(--extralight-blue);
   transition-duration: .3s;
-  will-change: border-color;
+  /* will-change: border-color; */
 }
 
 .contentContainer {
