@@ -2,7 +2,6 @@ import g from 'uikit/uikit.module.css'
 
 const initEvent = e => {
   const els = selectElements(g)
-  console.log(els)
   const d = getViewportDimensions()
   if(els) {
     animate(e, d, els, g)  
